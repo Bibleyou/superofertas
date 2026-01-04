@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUPER OFERTAS - Descubra o Segredo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SUPER OFERTAS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -15,287 +15,256 @@
             --cinza-medio: #666666;
             --cinza-claro: #F8F8F8;
             --branco: #FFFFFF;
-            --sombra: 0 6px 20px rgba(255, 107, 0, 0.15);
-            --sombra-forte: 0 10px 30px rgba(255, 107, 0, 0.25);
-            --transicao: all 0.3s ease;
+            --verde: #00A650;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, var(--laranja-suave) 0%, #fff 100%);
-            min-height: 100vh;
+            background-color: var(--branco);
             color: var(--cinza-escuro);
-            line-height: 1.6;
-            padding: 15px;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* HEADER */
-        .header {
-            text-align: center;
-            padding: 25px 20px;
+        /* HEADER FIXO COMO NA IMAGEM */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             background: linear-gradient(135deg, var(--laranja-principal) 0%, var(--laranja-escuro) 100%);
-            border-radius: 20px;
-            margin-bottom: 25px;
-            box-shadow: var(--sombra);
-            color: var(--branco);
+            padding: 15px 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+        }
+        
+        .logo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 10px;
+            gap: 10px;
+            color: var(--branco);
         }
         
         .logo-icon {
             background: var(--branco);
             color: var(--laranja-principal);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 900;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         
         .logo-text {
-            font-size: 2.8rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            letter-spacing: -1px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            letter-spacing: -0.5px;
         }
         
-        .slogan {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* FILTROS */
-        .filtros-container {
-            background: var(--branco);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: var(--sombra);
-        }
-        
-        .busca-rapida {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .busca-rapida {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .busca-input {
+        .search-container {
             position: relative;
+            width: 100%;
         }
         
-        .busca-input i {
+        .search-container i {
             position: absolute;
-            left: 18px;
+            left: 15px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--cinza-medio);
-            font-size: 1.2rem;
+            z-index: 2;
         }
         
-        .busca-input input {
+        .search-container input {
             width: 100%;
-            padding: 16px 20px 16px 50px;
-            border: 2px solid #eee;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: var(--transicao);
-            background: var(--cinza-claro);
-        }
-        
-        .busca-input input:focus {
-            border-color: var(--laranja-principal);
-            background: var(--branco);
-            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
-            outline: none;
-        }
-        
-        .btn-filtrar {
-            background: var(--laranja-principal);
-            color: var(--branco);
+            padding: 16px 20px 16px 45px;
             border: none;
-            border-radius: 12px;
-            padding: 0 25px;
+            border-radius: 25px;
             font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transicao);
+            background-color: var(--branco);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .search-container input:focus {
+            outline: none;
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.2);
+        }
+        
+        /* CONTEÚDO PRINCIPAL */
+        .main-content {
+            margin-top: 140px;
+            padding: 0 15px 80px;
+        }
+        
+        /* SEÇÃO DE CATEGORIAS */
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 20px 0 15px;
+            color: var(--cinza-escuro);
+        }
+        
+        .categories-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
             gap: 10px;
-            white-space: nowrap;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
         }
         
-        .btn-filtrar:hover {
-            background: var(--laranja-escuro);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        .categories-container::-webkit-scrollbar {
+            display: none;
         }
         
-        .categorias-rapidas {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        
-        .categoria-btn {
-            background: var(--cinza-claro);
-            border: 2px solid #eee;
-            border-radius: 50px;
+        .category-chip {
+            background-color: var(--laranja-suave);
+            border: 1px solid rgba(255, 107, 0, 0.2);
+            border-radius: 20px;
             padding: 10px 20px;
             font-size: 0.9rem;
-            color: var(--cinza-escuro);
+            font-weight: 600;
+            color: var(--laranja-principal);
+            white-space: nowrap;
             cursor: pointer;
-            transition: var(--transicao);
-            font-weight: 500;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
         
-        .categoria-btn:hover, .categoria-btn.ativa {
-            background: var(--laranja-principal);
+        .category-chip.active {
+            background-color: var(--laranja-principal);
             color: var(--branco);
-            border-color: var(--laranja-principal);
         }
         
-        /* PRODUTOS */
-        .produtos-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        @media (max-width: 768px) {
-            .produtos-container {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .produtos-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .produto-card {
-            background: var(--branco);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: var(--sombra);
-            transition: var(--transicao);
+        /* CARDS DE PRODUTO - ESTILO APP */
+        .product-grid {
             display: flex;
             flex-direction: column;
-            height: 100%;
-            animation: fadeIn 0.5s ease forwards;
+            gap: 20px;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .produto-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--sombra-forte);
-        }
-        
-        .produto-imagem-container {
-            height: 230px;
+        .product-card {
+            background: var(--branco);
+            border-radius: 16px;
             overflow: hidden;
-            background: var(--cinza-claro);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-image-container {
+            position: relative;
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f9f9f9;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
         }
         
-        .produto-imagem {
+        .product-image {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            padding: 20px;
             transition: transform 0.5s ease;
         }
         
-        .produto-card:hover .produto-imagem {
+        .product-card:hover .product-image {
             transform: scale(1.05);
         }
         
-        .produto-info {
-            padding: 22px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: var(--verde);
+            color: var(--branco);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
         }
         
-        .produto-categoria {
-            display: inline-block;
-            background: rgba(255, 107, 0, 0.1);
-            color: var(--laranja-principal);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            align-self: flex-start;
+        .product-info {
+            padding: 18px;
         }
         
-        .produto-titulo {
+        .product-title {
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 1.05rem;
+            margin-bottom: 12px;
             color: var(--cinza-escuro);
             line-height: 1.4;
-            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
-        .btn-oferta {
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 0.85rem;
+        }
+        
+        .product-rating {
+            color: #FFB100;
+            letter-spacing: 2px;
+        }
+        
+        .product-sales {
+            color: var(--cinza-medio);
+            font-weight: 600;
+        }
+        
+        /* BOTÃO MISTERIOSO */
+        .mystery-button {
             display: block;
-            text-align: center;
+            width: 100%;
+            padding: 16px;
             background: linear-gradient(135deg, var(--laranja-principal) 0%, var(--laranja-escuro) 100%);
             color: var(--branco);
-            padding: 16px;
+            border: none;
             border-radius: 12px;
-            text-decoration: none;
-            font-weight: 800;
             font-size: 1.1rem;
-            transition: var(--transicao);
-            margin-top: auto;
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
-            letter-spacing: 0.5px;
+            font-weight: 800;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
             position: relative;
             overflow: hidden;
         }
         
-        .btn-oferta::after {
+        .mystery-button::after {
             content: "→";
             position: absolute;
             right: 20px;
@@ -305,94 +274,33 @@
             transition: transform 0.3s ease;
         }
         
-        .btn-oferta:hover {
+        .mystery-button:hover {
             background: linear-gradient(135deg, var(--laranja-escuro) 0%, #D14900 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(255, 107, 0, 0.4);
         }
         
-        .btn-oferta:hover::after {
+        .mystery-button:hover::after {
             transform: translateY(-50%) translateX(5px);
         }
         
-        /* ESTATÍSTICAS */
-        .estatisticas {
+        /* LOADING */
+        .loading-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding: 20px;
-            background: var(--branco);
-            border-radius: 16px;
-            box-shadow: var(--sombra);
-        }
-        
-        @media (max-width: 768px) {
-            .estatisticas {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
-            }
-        }
-        
-        .contador-produtos {
-            font-size: 1.1rem;
-            color: var(--cinza-escuro);
-            font-weight: 600;
-        }
-        
-        .contador-produtos span {
-            color: var(--laranja-principal);
-            font-weight: 800;
-            font-size: 1.3rem;
-        }
-        
-        /* PAGINAÇÃO */
-        .paginacao {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 40px 0;
-        }
-        
-        .pagina-btn {
-            width: 45px;
-            height: 45px;
-            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 2px solid #eee;
-            background: var(--branco);
-            border-radius: 12px;
-            font-weight: 700;
-            color: var(--cinza-escuro);
-            cursor: pointer;
-            transition: var(--transicao);
-        }
-        
-        .pagina-btn:hover, .pagina-btn.ativa {
-            background: var(--laranja-principal);
-            color: var(--branco);
-            border-color: var(--laranja-principal);
-        }
-        
-        /* LOADING E ESTADO VAZIO */
-        .loading {
-            text-align: center;
             padding: 60px 20px;
-            font-size: 1.2rem;
-            color: var(--cinza-medio);
-            grid-column: 1 / -1;
         }
         
         .loading-spinner {
-            border: 5px solid rgba(255, 107, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 107, 0, 0.2);
+            border-top: 4px solid var(--laranja-principal);
             border-radius: 50%;
-            border-top: 5px solid var(--laranja-principal);
-            width: 60px;
-            height: 60px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            margin-bottom: 20px;
         }
         
         @keyframes spin {
@@ -400,239 +308,218 @@
             100% { transform: rotate(360deg); }
         }
         
-        .estado-vazio {
+        /* ESTADO VAZIO */
+        .empty-state {
             text-align: center;
             padding: 80px 20px;
-            grid-column: 1 / -1;
         }
         
-        .estado-vazio i {
+        .empty-state i {
             font-size: 4rem;
-            color: #ddd;
+            color: #e0e0e0;
             margin-bottom: 20px;
         }
         
-        .estado-vazio h3 {
-            margin-bottom: 15px;
+        .empty-state h3 {
+            font-size: 1.4rem;
             color: var(--cinza-medio);
-            font-size: 1.5rem;
+            margin-bottom: 10px;
         }
         
         /* FOOTER */
-        .footer {
-            background: var(--cinza-escuro);
-            color: var(--branco);
-            padding: 40px 20px 20px;
-            margin-top: 60px;
-            border-radius: 20px;
-            text-align: center;
-        }
-        
-        .footer p {
-            margin-bottom: 10px;
-            color: #ccc;
-        }
-        
-        .footer .destaque {
-            color: var(--laranja-claro);
-            font-weight: 600;
-        }
-        
-        /* BOTÃO FLUTUANTE */
-        .whatsapp-float {
+        .app-footer {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #25D366;
-            color: var(--branco);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--branco);
+            border-top: 1px solid #f0f0f0;
+            padding: 12px 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: var(--transicao);
-            text-decoration: none;
+            justify-content: space-around;
+            z-index: 999;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
         }
         
-        .whatsapp-float:hover {
-            background: #128C7E;
-            transform: scale(1.1);
+        .footer-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--cinza-medio);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-tab i {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        
+        .footer-tab.active {
+            color: var(--laranja-principal);
+        }
+        
+        /* AJUSTES PARA TELAS MAIORES */
+        @media (min-width: 768px) {
+            .main-content {
+                max-width: 600px;
+                margin: 140px auto 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- HEADER -->
-        <header class="header">
+    <!-- HEADER FIXO -->
+    <header class="app-header">
+        <div class="logo-header">
             <div class="logo">
                 <div class="logo-icon">S</div>
                 <div class="logo-text">SUPER OFERTAS</div>
             </div>
-            <p class="slogan">Descubra produtos incríveis. O segredo é clicar para ver!</p>
-        </header>
-
-        <!-- FILTROS -->
-        <section class="filtros-container">
-            <div class="busca-rapida">
-                <div class="busca-input">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="O que você está procurando?">
-                </div>
-                <button class="btn-filtrar" id="filterButton">
-                    <i class="fas fa-filter"></i> Filtrar
-                </button>
-            </div>
-            
-            <div class="categorias-rapidas" id="categoryButtons">
-                <!-- As categorias serão carregadas automaticamente -->
-            </div>
-        </section>
-
-        <!-- ESTATÍSTICAS -->
-        <div class="estatisticas">
-            <div class="contador-produtos">
-                Encontramos <span id="productCount">0</span> ofertas secretas!
-            </div>
         </div>
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Pesquisar produtos e lojas">
+        </div>
+    </header>
 
-        <!-- LOADING -->
-        <div id="loading" class="loading">
-            <div class="loading-spinner"></div>
-            <p>Procurando ofertas misteriosas para você...</p>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+        <!-- SEÇÃO RECOMENDAÇÕES -->
+        <h2 class="section-title">Recomendação</h2>
+        <div class="categories-container" id="categoriesContainer">
+            <!-- Categorias serão carregadas dinamicamente -->
         </div>
 
         <!-- PRODUTOS -->
-        <div id="productsContainer" class="produtos-container">
-            <!-- Os produtos serão carregados aqui automaticamente -->
+        <div id="productsContainer" class="product-grid">
+            <!-- Produtos serão carregados aqui -->
         </div>
 
-        <!-- PAGINAÇÃO -->
-        <div class="paginacao" id="pagination">
-            <!-- A paginação será gerada aqui -->
+        <!-- LOADING -->
+        <div id="loading" class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Buscando ofertas incríveis...</p>
         </div>
 
         <!-- ESTADO VAZIO -->
-        <div id="emptyState" class="estado-vazio" style="display: none;">
+        <div id="emptyState" class="empty-state" style="display: none;">
             <i class="fas fa-search"></i>
-            <h3>Nenhuma oferta encontrada</h3>
-            <p>Tente ajustar sua busca ou escolher outra categoria.</p>
-            <button class="btn-filtrar" onclick="resetFilters()" style="margin: 20px auto 0; display: block;">
-                <i class="fas fa-redo"></i> Limpar Filtros
-            </button>
+            <h3>Nenhum produto encontrado</h3>
+            <p>Tente ajustar sua busca ou selecione outra categoria</p>
         </div>
+    </main>
 
-        <!-- FOOTER -->
-        <footer class="footer">
-            <p><span class="destaque">SUPER OFERTAS</span> - As melhores ofertas da Shopee em um só lugar!</p>
-            <p>Atualizado automaticamente. Todos os produtos são de parceiros afiliados.</p>
-            <p style="margin-top: 20px; font-size: 0.9rem;">✨ O segredo sempre está por trás de um clique!</p>
-        </footer>
-    </div>
-
-    <!-- BOTÃO WHATSAPP -->
-    <a href="https://wa.me/5511999999999?text=Olá! Vi as ofertas no SUPER OFERTAS!" target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- FOOTER / MENU INFERIOR -->
+    <nav class="app-footer">
+        <a href="#" class="footer-tab active">
+            <i class="fas fa-home"></i>
+            <span>Oferta</span>
+        </a>
+        <a href="#" class="footer-tab">
+            <i class="fas fa-chart-line"></i>
+            <span>Conversão</span>
+        </a>
+        <a href="#" class="footer-tab">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Renda</span>
+        </a>
+        <a href="#" class="footer-tab">
+            <i class="fas fa-user"></i>
+            <span>Conta</span>
+        </a>
+    </nav>
 
     <script>
-        // ========== CONFIGURAÇÃO PRINCIPAL ==========
-        // URL da sua planilha (formato CSV)
+        // ========== CONFIGURAÇÃO ==========
         const SHEET_URL = 'https://docs.google.com/spreadsheets/d/16TTELO5LDp1YZ4cJQk95_dHIHyHw0ZJlJApDXvTGLUI/gviz/tq?tqx=out:csv';
         
-        // Lista de textos misteriosos para os botões (serão sorteados)
-        const TEXTOS_BOTAO = [
-            "🔥 O Que Tem Aqui?",
-            "✨ Descobrir Segredo",
-            "🚀 Ver Essa Já!",
-            "🤫 Eu Preciso Ver",
-            "🎁 Abrir Surpresa",
-            "👀 É Isso Mesmo?",
-            "💥 Mostre-me!",
-            "🌟 Desvendar Oferta",
-            "🛒 Quero Isso!",
-            "🔍 Investigar"
+        // Textos misteriosos para os botões
+        const TEXTOS_MISTERIOSOS = [
+            "🚀 DESCOBRIR SEGREDO",
+            "✨ O QUE HÁ AQUI?",
+            "🤫 EU PRECISO VER",
+            "🎁 ABRIR SURPRESA",
+            "🔍 INVESTIGAR AGORA",
+            "🌟 DESVENDAR OFERTA",
+            "💥 VER ESTA JÁ!",
+            "🛒 EU QUERO ISSO!",
+            "🔥 SABER MAIS",
+            "😮 MOSTRE-ME"
         ];
-
+        
+        // Dados de vendas (simulados para demonstração)
+        const VENDAS_SIMULADAS = ["2mil+ vendas", "1mil+ vendas", "500+ vendas", "100+ vendas", "50+ vendas"];
+        const AVALIACOES = ["★★★★★", "★★★★☆", "★★★☆☆"];
+        
         // ========== VARIÁVEIS GLOBAIS ==========
         let todosProdutos = [];
         let produtosFiltrados = [];
         let categoriasUnicas = new Set();
-        let paginaAtual = 1;
-        const produtosPorPagina = 12;
-        let categoriaSelecionada = "";
-
-        // ========== ELEMENTOS DO DOM ==========
+        let categoriaAtiva = "";
+        
+        // ========== ELEMENTOS DOM ==========
         const productsContainer = document.getElementById('productsContainer');
         const loadingElement = document.getElementById('loading');
         const searchInput = document.getElementById('searchInput');
-        const filterButton = document.getElementById('filterButton');
-        const productCount = document.getElementById('productCount');
-        const paginationElement = document.getElementById('pagination');
+        const categoriesContainer = document.getElementById('categoriesContainer');
         const emptyState = document.getElementById('emptyState');
-        const categoryButtonsContainer = document.getElementById('categoryButtons');
-
+        
         // ========== FUNÇÕES PRINCIPAIS ==========
         
-        // Função para carregar os produtos da planilha
+        // Carrega produtos da planilha
         async function carregarProdutos() {
-            loadingElement.style.display = 'block';
-            productsContainer.innerHTML = '';
-            emptyState.style.display = 'none';
-            
             try {
-                // Usando um proxy CORS para evitar bloqueios
                 const proxyUrl = 'https://corsproxy.io/?';
                 const response = await fetch(proxyUrl + encodeURIComponent(SHEET_URL));
                 
-                if (!response.ok) {
-                    throw new Error(`Erro ao carregar: ${response.status}`);
-                }
+                if (!response.ok) throw new Error('Erro ao carregar dados');
                 
                 const csvText = await response.text();
                 processarCSV(csvText);
                 
             } catch (error) {
-                console.error('Erro:', error);
-                // Em caso de erro, carrega dados de exemplo
-                carregarDadosExemplo();
+                console.error('Erro ao carregar planilha:', error);
+                usarDadosExemplo();
             }
         }
-
-        // Processa o texto CSV da planilha
+        
+        // Processa o CSV da planilha
         function processarCSV(csvText) {
             const linhas = csvText.split('\n');
             todosProdutos = [];
             categoriasUnicas.clear();
             
-            // Detecta automaticamente as colunas baseado nos cabeçalhos
+            if (linhas.length === 0) {
+                usarDadosExemplo();
+                return;
+            }
+            
+            // Detecta cabeçalhos automaticamente
             const cabecalhos = linhas[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
             
-            // Encontra os índices das colunas que precisamos
             const indiceNome = cabecalhos.findIndex(h => h.includes('nome') || h.includes('produto') || h.includes('title'));
             const indiceImagem = cabecalhos.findIndex(h => h.includes('imagem') || h.includes('foto') || h.includes('image') || h.includes('url'));
             const indiceCategoria = cabecalhos.findIndex(h => h.includes('categoria') || h.includes('tipo') || h.includes('category'));
             const indiceLink = cabecalhos.findIndex(h => h.includes('link') || h.includes('url') || h.includes('shopee'));
             
-            // Processa cada linha de dados
+            // Processa cada linha
             for (let i = 1; i < linhas.length; i++) {
                 if (!linhas[i].trim()) continue;
                 
-                // Divide as colunas corretamente, mesmo com vírgulas dentro de aspas
                 const colunas = linhas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(col => col.trim().replace(/^"|"$/g, ''));
                 
                 if (colunas.length >= 4) {
                     const produto = {
                         nome: colunas[indiceNome] || 'Produto Sem Nome',
-                        imagem: colunas[indiceImagem] || 'https://via.placeholder.com/300x300/FF6B00/FFFFFF?text=Super+Oferta',
+                        imagem: colunas[indiceImagem] || 'https://via.placeholder.com/300x300/FF6B00/FFFFFF?text=Oferta+Secreta',
                         categoria: colunas[indiceCategoria] || 'Geral',
                         link: colunas[indiceLink] || '#'
                     };
                     
-                    // Garante que o link comece com http:// ou https://
+                    // Garante que o link comece com http
                     if (produto.link !== '#' && !produto.link.startsWith('http')) {
                         produto.link = 'https://' + produto.link;
                     }
@@ -642,16 +529,15 @@
                 }
             }
             
-            // Se não encontrou produtos, usa dados de exemplo
             if (todosProdutos.length === 0) {
-                carregarDadosExemplo();
+                usarDadosExemplo();
             } else {
-                inicializarSite();
+                inicializarApp();
             }
         }
-
-        // Dados de exemplo (usado se a planilha não carregar)
-        function carregarDadosExemplo() {
+        
+        // Usa dados de exemplo se a planilha não carregar
+        function usarDadosExemplo() {
             todosProdutos = [
                 {
                     nome: "Conjunto Academia Top Fitness e Legging Cintura Alta Zero",
@@ -660,25 +546,25 @@
                     link: "https://s.shopee.com.br/13r"
                 },
                 {
-                    nome: "Bicicleta Ergométrica Bluetooth 2.0",
+                    nome: "Bicicleta Ergométrica Bluetooth 2.0 Jogos AR",
                     imagem: "https://images.unsplash.com/photo-1576678927484-cc907957088c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     categoria: "Esportes e Lazer",
                     link: "https://s.shopee.com.br/gJ"
                 },
                 {
-                    nome: "Conjunto Academia Treino Top e Calça Legging Fitness",
+                    nome: "Conjunto Academia Treino Top e Calça Legging",
                     imagem: "https://images.unsplash.com/photo-1591369822091-8b603d6f6c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     categoria: "ROUPA FEMININA",
                     link: "https://s.shopee.com.br/3Bt"
                 },
                 {
-                    nome: "Fone de Ouvido Bluetooth com Cancelamento de Ruído",
+                    nome: "Fone Bluetooth com Cancelamento de Ruído",
                     imagem: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     categoria: "Eletrônicos",
                     link: "https://shope.ee/7fKQ2X6pJd"
                 },
                 {
-                    nome: "Smartwatch para Fitness com Monitor Cardíaco",
+                    nome: "Smartwatch Fitness com Monitor Cardíaco",
                     imagem: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     categoria: "Eletrônicos",
                     link: "https://shope.ee/5KQ1W2V3U4"
@@ -691,70 +577,65 @@
                 }
             ];
             
-            todosProdutos.forEach(produto => categoriasUnicas.add(produto.categoria));
-            inicializarSite();
-            
-            // Mostra um aviso discreto
-            const aviso = document.createElement('div');
-            aviso.style.cssText = 'background:#fff8e1; border-left:4px solid #ffc107; padding:12px; margin:15px 0; border-radius:0 8px 8px 0; color:#856404; font-size:0.9rem;';
-            aviso.innerHTML = '<strong>📝 Nota:</strong> Mostrando dados de exemplo. Sua planilha está conectada e será usada automaticamente quando estiver configurada.';
-            document.querySelector('.estatisticas').before(aviso);
+            todosProdutos.forEach(p => categoriasUnicas.add(p.categoria));
+            inicializarApp();
         }
-
-        // Inicializa o site após carregar os produtos
-        function inicializarSite() {
+        
+        // Inicializa o app após carregar dados
+        function inicializarApp() {
             loadingElement.style.display = 'none';
             
-            // Cria os botões de categoria
-            criarBotoesCategoria();
+            // Cria as categorias
+            criarCategorias();
             
-            // Inicializa os produtos filtrados
+            // Inicializa produtos filtrados
             produtosFiltrados = [...todosProdutos];
-            
-            // Atualiza contador
-            atualizarContador();
             
             // Renderiza os produtos
             renderizarProdutos();
+            
+            // Configura eventos
+            configurarEventos();
         }
-
-        // Cria os botões de filtro por categoria
-        function criarBotoesCategoria() {
-            categoryButtonsContainer.innerHTML = '';
+        
+        // Cria os chips de categoria
+        function criarCategorias() {
+            categoriesContainer.innerHTML = '';
             
             // Botão "Todas"
-            const btnTodas = document.createElement('button');
-            btnTodas.className = 'categoria-btn ativa';
+            const btnTodas = document.createElement('div');
+            btnTodas.className = 'category-chip active';
             btnTodas.textContent = 'Todas';
-            btnTodas.dataset.categoria = '';
-            btnTodas.addEventListener('click', () => {
-                document.querySelectorAll('.categoria-btn').forEach(btn => btn.classList.remove('ativa'));
-                btnTodas.classList.add('ativa');
-                categoriaSelecionada = '';
-                filtrarProdutos();
-            });
-            categoryButtonsContainer.appendChild(btnTodas);
+            btnTodas.onclick = () => filtrarPorCategoria('');
+            categoriesContainer.appendChild(btnTodas);
             
-            // Botões para cada categoria única
-            const categoriasOrdenadas = Array.from(categoriasUnicas).sort();
-            
-            categoriasOrdenadas.forEach(categoria => {
-                const btn = document.createElement('button');
-                btn.className = 'categoria-btn';
-                btn.textContent = categoria;
-                btn.dataset.categoria = categoria;
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.categoria-btn').forEach(btn => btn.classList.remove('ativa'));
-                    btn.classList.add('ativa');
-                    categoriaSelecionada = categoria;
-                    filtrarProdutos();
-                });
-                categoryButtonsContainer.appendChild(btn);
+            // Cria chips para cada categoria
+            Array.from(categoriasUnicas).sort().forEach(categoria => {
+                const chip = document.createElement('div');
+                chip.className = 'category-chip';
+                chip.textContent = categoria;
+                chip.onclick = () => filtrarPorCategoria(categoria);
+                categoriesContainer.appendChild(chip);
             });
         }
-
-        // Filtra os produtos com base na busca e categoria
-        function filtrarProdutos() {
+        
+        // Filtra produtos por categoria
+        function filtrarPorCategoria(categoria) {
+            categoriaAtiva = categoria;
+            
+            // Atualiza estado dos chips
+            document.querySelectorAll('.category-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            
+            // Aplica filtro
+            aplicarFiltros();
+        }
+        
+        // Aplica todos os filtros (busca + categoria)
+        function aplicarFiltros() {
             const termoBusca = searchInput.value.toLowerCase().trim();
             
             produtosFiltrados = todosProdutos.filter(produto => {
@@ -762,176 +643,89 @@
                     produto.nome.toLowerCase().includes(termoBusca) ||
                     produto.categoria.toLowerCase().includes(termoBusca);
                 
-                const correspondeCategoria = categoriaSelecionada === '' || 
-                    produto.categoria === categoriaSelecionada;
+                const correspondeCategoria = categoriaAtiva === '' || 
+                    produto.categoria === categoriaAtiva;
                 
                 return correspondeBusca && correspondeCategoria;
             });
             
-            paginaAtual = 1;
-            atualizarContador();
             renderizarProdutos();
         }
-
-        // Atualiza o contador de produtos
-        function atualizarContador() {
-            productCount.textContent = produtosFiltrados.length;
-            
-            if (produtosFiltrados.length === 0) {
-                productsContainer.innerHTML = '';
-                emptyState.style.display = 'block';
-                paginationElement.innerHTML = '';
-            } else {
-                emptyState.style.display = 'none';
-            }
-        }
-
+        
         // Renderiza os produtos na tela
         function renderizarProdutos() {
             productsContainer.innerHTML = '';
             
-            // Calcula quais produtos mostrar na página atual
-            const inicio = (paginaAtual - 1) * produtosPorPagina;
-            const fim = inicio + produtosPorPagina;
-            const produtosParaMostrar = produtosFiltrados.slice(inicio, fim);
+            if (produtosFiltrados.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
             
             // Renderiza cada produto
-            produtosParaMostrar.forEach((produto, index) => {
+            produtosFiltrados.forEach((produto, index) => {
                 const card = document.createElement('div');
-                card.className = 'produto-card';
-                card.style.animationDelay = `${Math.min(index * 0.1, 0.5)}s`;
+                card.className = 'product-card';
                 
-                // Sorteia um texto misterioso para o botão
-                const textoBotao = TEXTOS_BOTAO[Math.floor(Math.random() * TEXTOS_BOTAO.length)];
+                // Texto aleatório para o botão
+                const textoBotao = TEXTOS_MISTERIOSOS[Math.floor(Math.random() * TEXTOS_MISTERIOSOS.length)];
+                
+                // Dados simulados para avaliações e vendas
+                const avaliacao = AVALIACOES[Math.floor(Math.random() * AVALIACOES.length)];
+                const vendas = VENDAS_SIMULADAS[Math.floor(Math.random() * VENDAS_SIMULADAS.length)];
                 
                 card.innerHTML = `
-                    <div class="produto-imagem-container">
-                        <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem" 
-                             onerror="this.src='https://via.placeholder.com/300x300/FF6B00/FFFFFF?text=Super+Oferta'">
+                    <div class="product-image-container">
+                        <img src="${produto.imagem}" alt="${produto.nome}" class="product-image" 
+                             onerror="this.src='https://via.placeholder.com/300x300/FF6B00/FFFFFF?text=Oferta+Secreta'">
+                        <div class="product-badge">DESTAQUE</div>
                     </div>
-                    <div class="produto-info">
-                        <div class="produto-categoria">${produto.categoria}</div>
-                        <h3 class="produto-titulo">${produto.nome}</h3>
-                        <a href="${produto.link}" target="_blank" class="btn-oferta">${textoBotao}</a>
+                    <div class="product-info">
+                        <h3 class="product-title">${produto.nome}</h3>
+                        <div class="product-meta">
+                            <div class="product-rating">${avaliacao}</div>
+                            <div class="product-sales">${vendas}</div>
+                        </div>
+                        <a href="${produto.link}" target="_blank" class="mystery-button">${textoBotao}</a>
                     </div>
                 `;
                 
                 productsContainer.appendChild(card);
             });
-            
-            // Renderiza a paginação
-            renderizarPaginacao();
         }
-
-        // Renderiza os controles de paginação
-        function renderizarPaginacao() {
-            const totalPaginas = Math.ceil(produtosFiltrados.length / produtosPorPagina);
-            
-            if (totalPaginas <= 1) {
-                paginationElement.innerHTML = '';
-                return;
-            }
-            
-            let htmlPaginacao = '';
-            
-            // Botão "Anterior"
-            if (paginaAtual > 1) {
-                htmlPaginacao += `<button class="pagina-btn" onclick="mudarPagina(${paginaAtual - 1})">
-                    <i class="fas fa-chevron-left"></i>
-                </button>`;
-            }
-            
-            // Números das páginas
-            const maxVisiveis = 5;
-            let inicioPagina = Math.max(1, paginaAtual - Math.floor(maxVisiveis / 2));
-            let fimPagina = Math.min(totalPaginas, inicioPagina + maxVisiveis - 1);
-            
-            if (fimPagina - inicioPagina + 1 < maxVisiveis) {
-                inicioPagina = Math.max(1, fimPagina - maxVisiveis + 1);
-            }
-            
-            for (let i = inicioPagina; i <= fimPagina; i++) {
-                htmlPaginacao += `<button class="pagina-btn ${i === paginaAtual ? 'ativa' : ''}" onclick="mudarPagina(${i})">${i}</button>`;
-            }
-            
-            // Botão "Próxima"
-            if (paginaAtual < totalPaginas) {
-                htmlPaginacao += `<button class="pagina-btn" onclick="mudarPagina(${paginaAtual + 1})">
-                    <i class="fas fa-chevron-right"></i>
-                </button>`;
-            }
-            
-            paginationElement.innerHTML = htmlPaginacao;
-        }
-
-        // Função global para mudar de página
-        window.mudarPagina = function(novaPagina) {
-            paginaAtual = novaPagina;
-            renderizarProdutos();
-            productsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        };
-
-        // Função global para resetar filtros
-        window.resetFilters = function() {
-            searchInput.value = '';
-            categoriaSelecionada = '';
-            
-            // Ativa o botão "Todas"
-            document.querySelectorAll('.categoria-btn').forEach(btn => {
-                if (btn.dataset.categoria === '') {
-                    btn.classList.add('ativa');
-                } else {
-                    btn.classList.remove('ativa');
-                }
-            });
-            
-            filtrarProdutos();
-        };
-
-        // ========== CONFIGURAÇÃO DE EVENTOS ==========
+        
+        // Configura eventos
         function configurarEventos() {
-            // Busca com debounce (aguarda 300ms após parar de digitar)
+            // Busca com debounce
             let timeoutBusca;
             searchInput.addEventListener('input', () => {
                 clearTimeout(timeoutBusca);
-                timeoutBusca = setTimeout(filtrarProdutos, 300);
+                timeoutBusca = setTimeout(aplicarFiltros, 300);
             });
-            
-            // Botão de filtrar
-            filterButton.addEventListener('click', filtrarProdutos);
             
             // Tecla Enter na busca
             searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') filtrarProdutos();
+                if (e.key === 'Enter') aplicarFiltros();
             });
             
-            // Atualizar contador de visitas
-            function atualizarContadorVisitas() {
-                let visitas = localStorage.getItem('superOfertasVisitas') || 1254;
-                visitas = parseInt(visitas) + Math.floor(Math.random() * 3) + 1;
-                localStorage.setItem('superOfertasVisitas', visitas);
-                
-                // Opcional: pode exibir em algum lugar
-                // document.getElementById('contadorVisitas').textContent = visitas.toLocaleString('pt-BR');
-            }
+            // Clique nos botões misteriosos (para tracking)
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('mystery-button')) {
+                    // Aqui você pode adicionar código de tracking
+                    console.log('Botão misterioso clicado:', e.target.href);
+                }
+            });
             
-            // Atualiza a cada minuto (simulação)
-            setInterval(atualizarContadorVisitas, 60000);
-            atualizarContadorVisitas();
+            // Atualizar dados periodicamente
+            setInterval(carregarProdutos, 5 * 60 * 1000); // 5 minutos
         }
-
+        
         // ========== INICIALIZAÇÃO ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            carregarProdutos();
-            configurarEventos();
-            
-            // Atualiza os produtos a cada 5 minutos
-            setInterval(carregarProdutos, 5 * 60 * 1000);
-        });
+        document.addEventListener('DOMContentLoaded', carregarProdutos);
     </script>
 </body>
 </html>
-
 
 
 
