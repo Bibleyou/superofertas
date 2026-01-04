@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Link na Bio | Ofertas Shopee</title>
+  <title>Super Ofertas Shopee | Link na Bio</title>
 
-  <!-- SEO BÁSICO -->
-  <meta name="description" content="Ofertas selecionadas da Shopee. Produtos confiáveis, atualizados automaticamente." />
+  <meta name="description" content="Super ofertas da Shopee atualizadas automaticamente. Compre com segurança e aproveite os melhores preços." />
 
   <style>
     :root{--botao-cor:#ee4d2d}
-    body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding-bottom:100px}
-    header{background:#ee4d2d;color:#fff;padding:15px;text-align:center;font-size:18px;font-weight:bold}
+    body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding-bottom:90px}
+    header{background:#ee4d2d;color:#fff;padding:16px;text-align:center;font-size:18px;font-weight:bold}
+    header small{display:block;font-size:13px;font-weight:normal;margin-top:4px}
     .categorias{display:flex;gap:8px;overflow-x:auto;padding:10px;background:#fff}
     .categoria-btn{padding:8px 14px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer;white-space:nowrap}
     .categoria-btn.ativa{background:#ee4d2d;color:#fff;border-color:#ee4d2d}
@@ -32,8 +32,8 @@
 <body>
 
 <header>
-  🔥 Ofertas que Realmente Valem a Pena
-  <div style="font-size:13px;font-weight:normal">Atualizado automaticamente • Links verificados</div>
+  🔥 SUPER OFERTAS DA SHOPEE
+  <small>Atualizado automaticamente • Links verificados</small>
 </header>
 
 <div class="categorias" id="categorias"></div>
@@ -41,8 +41,8 @@
 
 <div class="popup" id="popup">
   <div class="popup-box">
-    <h3>🎁 Desconto Exclusivo</h3>
-    <p>Veja agora as ofertas que mais estão vendendo hoje</p>
+    <h3>🎁 Oferta Exclusiva</h3>
+    <p>Aproveite agora os produtos mais vendidos</p>
     <a href="https://shope.ee/SEU_LINK_GERAL" target="_blank">Ver Ofertas</a>
   </div>
 </div>
@@ -50,40 +50,54 @@
 <a href="https://shope.ee/SEU_LINK_GERAL" class="botao-flutuante" target="_blank">🔥 Ofertas do Dia</a>
 
 <script>
-// GARANTE QUE O DOM ESTÁ PRONTO
 window.addEventListener('DOMContentLoaded',()=>{
 
-  // A/B TESTE DE COR
+  // VARIÁVEL GLOBAL DE PRODUTOS
+  let produtos = [];
+
+  // A/B TESTE DE COR DO BOTÃO
   const cores=['#ee4d2d','#ff6a00'];
   document.documentElement.style.setProperty('--botao-cor',cores[Math.floor(Math.random()*cores.length)]);
 
-  // POPUP
+  // POPUP DE CONVERSÃO
   setTimeout(()=>{
     const p=document.getElementById('popup');
-    if(p) p.style.display='flex'
+    if(p) p.style.display='flex';
   },7000);
   document.getElementById('popup').onclick=e=>{
-    if(e.target.id==='popup')e.target.style.display='none'
+    if(e.target.id==='popup')e.target.style.display='none';
   };
 
-  const planilhaURL = 'https://opensheet.elk.sh/16TTELO5LDp1YZ4cJQk95_dHIHyHw0ZJlJApDXvTGLUI/SUPER%20OFERTAS';
-
+  // LINK DA PLANILHA
+  const planilhaURL='https://opensheet.elk.sh/16TTELO5LDp1YZ4cJQk95_dHIHyHw0ZJlJApDXvTGLUI/SUPER%20OFERTAS';
 
   fetch(planilhaURL)
     .then(r=>r.json())
     .then(dados=>{
-      produtos=Array.isArray(dados)?dados:Object.values(dados);
+      produtos = Array.isArray(dados) ? dados : Object.values(dados);
+      normalizarCampos();
       criarCategorias();
       renderizarProdutos('Todos');
     })
     .catch(()=>{
-      document.getElementById('produtos').innerHTML='<p style="text-align:center">Erro ao carregar produtos</p>'
+      document.getElementById('produtos').innerHTML = '<p style="text-align:center">Erro ao carregar produtos</p>';
     });
+
+  // NORMALIZA COLUNAS (MAIÚSCULO / MINÚSCULO)
+  function normalizarCampos(){
+    produtos = produtos.map(p=>({
+      nome: p.nome || p.NOME || 'Produto Shopee',
+      imagem: p.imagem || p.IMAGEM || '',
+      link: p.link || p.LINK || '#',
+      categoria: p.categoria || p.CATEGORIA || 'Outros',
+      estrelas: p.estrelas || p.ESTRELAS || 5
+    }));
+  }
 
   function criarCategorias(){
     const container=document.getElementById('categorias');
     if(!container) return;
-    const categorias=['Todos',...new Set(produtos.map(p=>p.categoria).filter(Boolean))];
+    const categorias=['Todos',...new Set(produtos.map(p=>p.categoria))];
     container.innerHTML='';
     categorias.forEach((cat,i)=>{
       const btn=document.createElement('button');
@@ -102,22 +116,27 @@ window.addEventListener('DOMContentLoaded',()=>{
     const container=document.getElementById('produtos');
     if(!container) return;
     container.innerHTML='';
-    produtos.filter(p=>cat==='Todos'||p.categoria===cat).forEach(prod=>{
-      const estrelas='★★★★★'.slice(0,prod.estrelas||5);
-      container.innerHTML+=`
-        <div class="produto">
-          <div class="selo">Mais Vendido</div>
-          <img src="${prod.imagem||''}" alt="${prod.nome||''}">
-          <h2>${prod.nome||'Produto Shopee'}</h2>
-          <div class="estrelas">${estrelas}</div>
-          <div class="urgencia">⏰ Últimas unidades</div>
-          <a href="${prod.link||'#'}" target="_blank">Comprar agora</a>
-        </div>`;
-    });
+    produtos
+      .filter(p=>cat==='Todos'||p.categoria===cat)
+      .forEach(prod=>{
+        const estrelas='★★★★★'.slice(0,Number(prod.estrelas));
+        container.innerHTML+=`
+          <div class="produto">
+            <div class="selo">Mais Vendido</div>
+            <img src="${prod.imagem}" alt="${prod.nome}">
+            <h2>${prod.nome}</h2>
+            <div class="estrelas">${estrelas}</div>
+            <div class="urgencia">⏰ Últimas unidades</div>
+            <a href="${prod.link}" target="_blank">Comprar agora</a>
+          </div>`;
+      });
   }
+
 });
 </script>
 
 </body>
 </html>
+
+
 
