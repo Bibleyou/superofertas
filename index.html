@@ -1,891 +1,1206 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos Shopee - Links de Afiliado</title>
+    <title>Ofertas Express - Buscador de Promoções</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #FF6B00;
+            --primary-dark: #E55A00;
+            --secondary-color: #1A1A2E;
+            --light-bg: #F5F5F7;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --white: #FFFFFF;
+            --border-color: #E0E0E0;
+            --success-color: #00B894;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--light-bg);
             line-height: 1.6;
-            padding: 20px;
         }
-        
+
         .container {
-            max-width: 1200px;
+            width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 20px;
         }
-        
+
+        /* Header */
         header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 25px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        
-        h1 {
-            color: #ee4d2d;
-            margin-bottom: 10px;
-            font-size: 2.4rem;
-        }
-        
-        .subtitle {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-        
-        .shopee-logo {
-            color: #ee4d2d;
-            font-weight: bold;
-        }
-        
-        .sheet-info {
-            background-color: #e9f7fe;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            text-align: left;
-            font-size: 0.9rem;
-        }
-        
-        .sheet-info strong {
-            color: #2c80b4;
-        }
-        
-        .filters {
+
+        .header-content {
             display: flex;
+            align-items: center;
             justify-content: space-between;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .logo-text span {
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 18px;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-actions a {
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .user-actions a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            background: linear-gradient(to right, #f8f9fa, #f1f3f5);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Filters */
+        .filters {
+            background-color: var(--white);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-options {
+            display: flex;
             flex-wrap: wrap;
             gap: 15px;
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            align-items: center;
         }
-        
-        .search-box {
-            flex: 1;
-            min-width: 300px;
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        
-        .search-box input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #eee;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            white-space: nowrap;
         }
-        
-        .search-box input:focus {
-            border-color: #ee4d2d;
-            outline: none;
-        }
-        
-        .category-filter {
-            min-width: 200px;
-        }
-        
-        .category-filter select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #eee;
-            border-radius: 8px;
-            font-size: 1rem;
-            background-color: white;
+
+        .filter-select {
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--text-primary);
             cursor: pointer;
+            min-width: 150px;
         }
-        
-        .stats {
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 40px 0;
+        }
+
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 15px 20px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
         }
-        
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
         .product-count {
-            font-size: 1.1rem;
-            color: #555;
+            color: var(--text-light);
+            font-size: 16px;
         }
-        
-        .loading {
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2rem;
-            color: #666;
-        }
-        
-        .products-container {
+
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
-            margin-bottom: 40px;
         }
-        
+
         .product-card {
-            background-color: white;
-            border-radius: 12px;
+            background-color: var(--white);
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
-        
+
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+            box-shadow: var(--shadow-hover);
         }
-        
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--success-color);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
         .product-image {
-            height: 220px;
-            width: 100%;
-            object-fit: contain;
-            background-color: #f9f9f9;
-            padding: 15px;
-        }
-        
-        .product-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .product-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            color: #222;
-            line-height: 1.4;
-            flex-grow: 1;
-        }
-        
-        .product-price {
-            color: #ee4d2d;
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        
-        .product-category {
-            display: inline-block;
-            background-color: #f1f1f1;
-            color: #666;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            align-self: flex-start;
-        }
-        
-        .affiliate-link {
-            display: block;
-            text-align: center;
-            background-color: #ee4d2d;
-            color: white;
-            padding: 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            margin-top: auto;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            width: 100%;
-        }
-        
-        .affiliate-link:hover {
-            background-color: #d04227;
-        }
-        
-        .affiliate-link:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            grid-column: 1 / -1;
-        }
-        
-        .empty-state h3 {
-            margin-bottom: 15px;
-            color: #666;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #777;
-            font-size: 0.9rem;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
-        
-        .pagination button {
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            background-color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .pagination button:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .pagination button.active {
-            background-color: #ee4d2d;
-            color: white;
-            border-color: #ee4d2d;
-        }
-        
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #333;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 10000;
+            height: 200px;
+            overflow: hidden;
             display: flex;
             align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            color: var(--text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-store {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .product-store i {
+            color: var(--primary-color);
+        }
+
+        .product-pricing {
+            margin-bottom: 15px;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .product-original-price {
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .product-discount {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--success-color);
+            background-color: rgba(0, 184, 148, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        .product-actions {
+            display: flex;
             gap: 10px;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s;
         }
-        
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
+
+        .btn-primary {
+            flex: 1;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
         }
-        
-        .toast-success {
-            background: #4CAF50;
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
         }
-        
-        .toast-warning {
-            background: #ff9800;
+
+        .btn-secondary {
+            width: 45px;
+            background-color: var(--light-bg);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .toast-error {
-            background: #f44336;
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
         }
-        
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px 0;
+            grid-column: 1 / -1;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating Button */
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .floating-button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .stats {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
-            .products-container {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .search-bar {
+                margin: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            h1 {
-                font-size: 2rem;
+            .hero-text h1 {
+                font-size: 32px;
             }
             
-            .filters {
+            .stats {
                 flex-direction: column;
+                gap: 20px;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .products-container {
-                grid-template-columns: 1fr;
+            
+            .floating-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Produtos Shopee - Afiliados</h1>
-            <p class="subtitle">Produtos carregados automaticamente da sua <span class="shopee-logo">planilha do Google Sheets</span></p>
-            <div class="sheet-info">
-                <p><strong>Planilha conectada:</strong> https://docs.google.com/spreadsheets/d/16TTELO5LDp1YZ4cJQk95_dHIHyHw0ZJlJApDXvTGLUI/edit</p>
-                <p>Atualize os produtos na planilha e eles aparecerão automaticamente aqui!</p>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">OE</div>
+                    <div class="logo-text">Ofertas<span>Express</span></div>
+                </a>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar produtos, marcas ou categorias...">
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="far fa-heart"></i> <span class="desktop-only">Favoritos</span></a>
+                    <a href="#"><i class="fas fa-user"></i> <span class="desktop-only">Minha Conta</span></a>
+                </div>
             </div>
-        </header>
-        
-        <div class="filters">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar produtos por nome...">
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>As melhores <span>ofertas</span> da internet em um só lugar</h1>
+                    <p>Encontre produtos com descontos incríveis das principais lojas online. Economize tempo e dinheiro com nossa curadoria de promoções.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalProducts">0</div>
+                            <div class="stat-label">Produtos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="avgDiscount">0%</div>
+                            <div class="stat-label">Desconto médio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="storesCount">0</div>
+                            <div class="stat-label">Lojas parceiras</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <!-- Imagem ilustrativa de ofertas -->
+                    <div style="width: 100%; max-width: 400px; background: linear-gradient(135deg, #FFE5D6, #FFD2B8); border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: var(--shadow);">
+                        <div style="font-size: 80px; color: var(--primary-color); margin-bottom: 20px;">🛍️</div>
+                        <h3 style="color: var(--secondary-color); margin-bottom: 10px;">Ofertas Exclusivas</h3>
+                        <p style="color: var(--text-secondary);">Produtos com até 80% de desconto</p>
+                    </div>
+                </div>
             </div>
-            <div class="category-filter">
-                <select id="categoryFilter">
-                    <option value="">Todas as categorias</option>
-                    <!-- Categorias serão carregadas dinamicamente -->
-                </select>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="container">
+            <div class="filter-options">
+                <div class="filter-group">
+                    <span class="filter-label">Ordenar por:</span>
+                    <select class="filter-select" id="sortSelect">
+                        <option value="relevance">Relevância</option>
+                        <option value="price_low">Menor preço</option>
+                        <option value="price_high">Maior preço</option>
+                        <option value="discount">Maior desconto</option>
+                        <option value="newest">Mais recentes</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">Categoria:</span>
+                    <select class="filter-select" id="categorySelect">
+                        <option value="all">Todas as categorias</option>
+                        <option value="electronics">Eletrônicos</option>
+                        <option value="fashion">Moda</option>
+                        <option value="home">Casa e Jardim</option>
+                        <option value="sports">Esportes</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">Loja:</span>
+                    <select class="filter-select" id="storeSelect">
+                        <option value="all">Todas as lojas</option>
+                        <option value="amazon">Amazon</option>
+                        <option value="shopee">Shopee</option>
+                        <option value="mercado_livre">Mercado Livre</option>
+                        <option value="ali_express">AliExpress</option>
+                    </select>
+                </div>
+                
+                <button id="clearFilters" class="btn-secondary" style="padding: 10px 20px; margin-left: auto;">
+                    <i class="fas fa-times"></i> Limpar filtros
+                </button>
             </div>
         </div>
-        
-        <div class="stats">
-            <div class="product-count" id="productCount">Carregando produtos...</div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Produtos em Oferta</h2>
+                <div class="product-count">
+                    <span id="visibleProducts">0</span> de <span id="totalProductsCount">0</span> produtos
+                </div>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Os produtos serão carregados aqui via JavaScript -->
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Carregando ofertas...</p>
+                </div>
+            </div>
         </div>
-        
-        <div id="loading" class="loading">
-            <p>Carregando produtos da planilha...</p>
+    </section>
+
+    <!-- Floating Button -->
+    <button class="floating-button" id="floatingButton">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Ofertas Express</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 20px;">Encontre as melhores ofertas da internet em um só lugar. Economize tempo e dinheiro.</p>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categorias</h3>
+                    <ul>
+                        <li><a href="#">Eletrônicos</a></li>
+                        <li><a href="#">Moda</a></li>
+                        <li><a href="#">Casa e Jardim</a></li>
+                        <li><a href="#">Esportes</a></li>
+                        <li><a href="#">Beleza</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Úteis</h3>
+                    <ul>
+                        <li><a href="#">Como funciona</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Trabalhe conosco</a></li>
+                        <li><a href="#">Fale conosco</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Inscreva-se</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 15px;">Receba as melhores ofertas diretamente no seu e-mail.</p>
+                    <div style="display: flex; margin-top: 10px;">
+                        <input type="email" placeholder="Seu e-mail" style="flex: 1; padding: 12px; border: none; border-radius: var(--radius-sm) 0 0 var(--radius-sm);">
+                        <button style="background-color: var(--primary-color); color: white; border: none; padding: 0 20px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; cursor: pointer;">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Ofertas Express. Todos os direitos reservados.</p>
+                <p style="margin-top: 5px;">Este site é apenas para fins demonstrativos.</p>
+            </div>
         </div>
-        
-        <div id="productsContainer" class="products-container">
-            <!-- Produtos serão carregados aqui -->
-        </div>
-        
-        <div class="pagination" id="pagination">
-            <!-- Paginação será adicionada aqui -->
-        </div>
-        
-        <footer>
-            <p>Esta página exibe produtos com links de afiliado da Shopee. Os preços e disponibilidade podem variar.</p>
-            <p>Atualizado automaticamente a partir da planilha do Google Sheets.</p>
-        </footer>
-    </div>
-    
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <i class="fas fa-info-circle"></i>
-        <span id="toastMessage">Mensagem de notificação</span>
-    </div>
+    </footer>
 
     <script>
+        // Configuração da planilha do Google Sheets
+        const SPREADSHEET_ID = '16TTELO5LDp1YZ4cJQk95_dHIHyHw0ZJlJApDXvTGLUI';
+        const SHEET_NAME = 'Ofertas'; // Nome da aba da planilha
+        const API_KEY = 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'; // Chave de API pública para leitura
+        
+        // URL para acessar a planilha via Google Sheets API v4
+        const SHEET_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
+        
+        // Dados mockados para demonstração (serão substituídos pelos dados reais da planilha)
+        let products = [];
+        let filteredProducts = [];
+        
+        // Elementos DOM
+        const productsGrid = document.getElementById('productsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+        const categorySelect = document.getElementById('categorySelect');
+        const storeSelect = document.getElementById('storeSelect');
+        const clearFiltersBtn = document.getElementById('clearFilters');
+        const floatingButton = document.getElementById('floatingButton');
+        const totalProductsEl = document.getElementById('totalProducts');
+        const avgDiscountEl = document.getElementById('avgDiscount');
+        const storesCountEl = document.getElementById('storesCount');
+        const visibleProductsEl = document.getElementById('visibleProducts');
+        const totalProductsCountEl = document.getElementById('totalProductsCount');
+        
+        // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            const productsContainer = document.getElementById('productsContainer');
-            const loadingElement = document.getElementById('loading');
-            const searchInput = document.getElementById('searchInput');
-            const categoryFilter = document.getElementById('categoryFilter');
-            const productCount = document.getElementById('productCount');
-            const paginationElement = document.getElementById('pagination');
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            
-            // ID da sua planilha do Google Sheets
-            const SHEET_ID = '16TTELO5LDp1YZ4cJQk95_dHIHyHw0ZJlJApDXvTGLUI';
-            
-            // URL para exportar a planilha como JSON
-            const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-            
-            let allProducts = [];
-            let filteredProducts = [];
-            let categories = new Set();
-            let currentPage = 1;
-            const productsPerPage = 12;
-            
             // Carregar produtos da planilha
-            async function loadProducts() {
-                loadingElement.style.display = 'block';
-                productsContainer.innerHTML = '';
-                
-                try {
-                    // Usando proxy para evitar problemas de CORS
-                    const proxyUrl = 'https://api.allorigins.win/get?url=';
-                    const encodedUrl = encodeURIComponent(SHEET_URL);
-                    const response = await fetch(proxyUrl + encodedUrl);
-                    
-                    if (!response.ok) {
-                        throw new Error(`Erro ao carregar a planilha: ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    
-                    // O Google Sheets retorna JSON com um prefixo
-                    const jsonStr = data.contents;
-                    const startIndex = jsonStr.indexOf('{');
-                    const jsonData = JSON.parse(jsonStr.substring(startIndex));
-                    
-                    parseJSONData(jsonData);
-                    
-                } catch (error) {
-                    console.error('Erro ao carregar produtos:', error);
-                    
-                    try {
-                        // Tentar método alternativo com CSV
-                        const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
-                        const proxyUrl = 'https://api.allorigins.win/get?url=';
-                        const encodedUrl = encodeURIComponent(csvUrl);
-                        const response = await fetch(proxyUrl + encodedUrl);
-                        
-                        if (!response.ok) {
-                            throw new Error(`Erro ao carregar a planilha: ${response.status}`);
-                        }
-                        
-                        const data = await response.json();
-                        parseCSVData(data.contents);
-                        
-                    } catch (csvError) {
-                        console.error('Erro com método alternativo:', csvError);
-                        showToast('Não foi possível carregar os produtos da planilha. Verifique se está pública.', 'error');
-                        
-                        // Carregar dados de exemplo para demonstração
-                        loadSampleData();
-                    }
-                }
-            }
+            loadProductsFromSheet();
             
-            // Parse dados CSV
-            function parseCSVData(csvText) {
-                const rows = csvText.split('\n');
-                allProducts = [];
-                categories.clear();
+            // Configurar eventos
+            searchInput.addEventListener('input', filterProducts);
+            sortSelect.addEventListener('change', sortProducts);
+            categorySelect.addEventListener('change', filterProducts);
+            storeSelect.addEventListener('change', filterProducts);
+            clearFiltersBtn.addEventListener('click', clearFilters);
+            floatingButton.addEventListener('click', scrollToTop);
+            
+            // Adicionar evento de rolagem para mostrar/ocultar botão flutuante
+            window.addEventListener('scroll', toggleFloatingButton);
+        });
+        
+        // Função para carregar produtos da planilha do Google Sheets
+        async function loadProductsFromSheet() {
+            try {
+                // Mostrar estado de carregamento
+                productsGrid.innerHTML = `
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Carregando ofertas da planilha...</p>
+                    </div>
+                `;
                 
+                // Fazer requisição para a API do Google Sheets
+                const response = await fetch(SHEET_URL);
+                
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar a planilha');
+                }
+                
+                const data = await response.json();
+                
+                // Verificar se há dados na planilha
+                if (!data.values || data.values.length < 2) {
+                    // Se não houver dados, usar dados de exemplo
+                    console.warn('Planilha vazia ou não encontrada. Usando dados de exemplo.');
+                    loadSampleProducts();
+                    return;
+                }
+                
+                // Converter dados da planilha para formato de produtos
                 // A primeira linha contém os cabeçalhos
-                const headers = rows[0].split(',').map(header => header.trim().replace(/"/g, ''));
+                const headers = data.values[0];
+                const rows = data.values.slice(1);
                 
-                // Encontrar índices das colunas
-                const titleIndex = headers.findIndex(h => h.toLowerCase().includes('titulo') || h.toLowerCase().includes('nome'));
-                const imageIndex = headers.findIndex(h => h.toLowerCase().includes('imagem') || h.toLowerCase().includes('foto'));
-                const priceIndex = headers.findIndex(h => h.toLowerCase().includes('preço') || h.toLowerCase().includes('preco') || h.toLowerCase().includes('valor'));
-                const categoryIndex = headers.findIndex(h => h.toLowerCase().includes('categoria') || h.toLowerCase().includes('tipo'));
-                const linkIndex = headers.findIndex(h => h.toLowerCase().includes('link') || h.toLowerCase().includes('afiliado') || h.toLowerCase().includes('url'));
-                
-                // Processar cada linha (começando da linha 1 para pular o cabeçalho)
-                for (let i = 1; i < rows.length; i++) {
-                    if (!rows[i].trim()) continue;
+                // Mapear produtos da planilha
+                products = rows.map(row => {
+                    // Criar objeto produto a partir da linha
+                    const product = {};
                     
-                    // Dividir a linha em colunas, tratando vírgulas dentro de aspas
-                    const columns = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(col => col.trim().replace(/^"|"$/g, ''));
+                    // Assumindo que a planilha tem as seguintes colunas:
+                    // Nome, Categoria, Loja, Preço Original, Preço com Desconto, Link, Imagem, Descrição
+                    headers.forEach((header, index) => {
+                        const value = row[index] || '';
+                        
+                        // Converter para tipos apropriados
+                        if (header.toLowerCase().includes('preço')) {
+                            // Extrair número do preço (remover "R$" e outras formatações)
+                            const priceMatch = value.toString().match(/\d+[\.,]?\d*/);
+                            product[header] = priceMatch ? parseFloat(priceMatch[0].replace(',', '.')) : 0;
+                        } else {
+                            product[header] = value;
+                        }
+                    });
                     
-                    if (columns.length >= 5) {
-                        const link = formatShopeeLink(columns[linkIndex] || '#');
-                        
-                        const product = {
-                            title: columns[titleIndex] || 'Produto sem nome',
-                            image: columns[imageIndex] || 'https://via.placeholder.com/300x300?text=Produto+Sem+Imagem',
-                            price: columns[priceIndex] || 'R$ 0,00',
-                            category: columns[categoryIndex] || 'Sem categoria',
-                            link: link,
-                            originalPrice: columns[5] || '',
-                            discount: columns[6] || '',
-                            // Armazenar também o link original para referência
-                            rawLink: columns[linkIndex] || '#'
-                        };
-                        
-                        allProducts.push(product);
-                        categories.add(product.category);
+                    // Adicionar campos calculados
+                    if (product['Preço Original'] && product['Preço com Desconto']) {
+                        const discount = ((product['Preço Original'] - product['Preço com Desconto']) / product['Preço Original']) * 100;
+                        product['Desconto'] = Math.round(discount);
+                    } else {
+                        product['Desconto'] = 0;
                     }
-                }
-                
-                // Se não encontrou produtos no CSV, carregar dados de exemplo
-                if (allProducts.length === 0) {
-                    loadSampleData();
-                } else {
-                    initializeProductDisplay();
-                    showToast(`${allProducts.length} produtos carregados da planilha!`, 'success');
-                }
-            }
-            
-            // Parse dados JSON (método alternativo)
-            function parseJSONData(jsonData) {
-                allProducts = [];
-                categories.clear();
-                
-                const rows = jsonData.table.rows;
-                const headers = jsonData.table.cols.map(col => col.label);
-                
-                // Encontrar índices das colunas
-                const titleIndex = headers.findIndex(h => h.toLowerCase().includes('titulo') || h.toLowerCase().includes('nome'));
-                const imageIndex = headers.findIndex(h => h.toLowerCase().includes('imagem') || h.toLowerCase().includes('foto'));
-                const priceIndex = headers.findIndex(h => h.toLowerCase().includes('preço') || h.toLowerCase().includes('preco') || h.toLowerCase().includes('valor'));
-                const categoryIndex = headers.findIndex(h => h.toLowerCase().includes('categoria') || h.toLowerCase().includes('tipo'));
-                const linkIndex = headers.findIndex(h => h.toLowerCase().includes('link') || h.toLowerCase().includes('afiliado') || h.toLowerCase().includes('url'));
-                
-                // Processar cada linha
-                for (let i = 0; i < rows.length; i++) {
-                    const row = rows[i];
-                    const cells = row.c;
                     
-                    if (cells && cells.length >= 5) {
-                        const link = formatShopeeLink(cells[linkIndex]?.v || '#');
-                        
-                        const product = {
-                            title: cells[titleIndex]?.v || 'Produto sem nome',
-                            image: cells[imageIndex]?.v || 'https://via.placeholder.com/300x300?text=Produto+Sem+Imagem',
-                            price: cells[priceIndex]?.v || 'R$ 0,00',
-                            category: cells[categoryIndex]?.v || 'Sem categoria',
-                            link: link,
-                            originalPrice: cells[5]?.v || '',
-                            discount: cells[6]?.v || '',
-                            rawLink: cells[linkIndex]?.v || '#'
-                        };
-                        
-                        allProducts.push(product);
-                        categories.add(product.category);
-                    }
-                }
-                
-                // Se não encontrou produtos, carregar dados de exemplo
-                if (allProducts.length === 0) {
-                    loadSampleData();
-                } else {
-                    initializeProductDisplay();
-                    showToast(`${allProducts.length} produtos carregados da planilha!`, 'success');
-                }
-            }
-            
-            // FUNÇÃO CRÍTICA: Converter links encurtados da Shopee para links funcionais
-            function formatShopeeLink(link) {
-                if (!link || link === '#' || link.trim() === '') {
-                    return '#';
-                }
-                
-                let formattedLink = link.trim();
-                
-                // Remover espaços em branco
-                formattedLink = formattedLink.replace(/\s+/g, '');
-                
-                // Se já for um link completo da Shopee, retornar como está
-                if (formattedLink.includes('shope.ee/') || formattedLink.includes('shopee.com.br/')) {
-                    // Garantir que comece com https://
-                    if (!formattedLink.startsWith('http')) {
-                        formattedLink = 'https://' + formattedLink;
-                    }
-                    return formattedLink;
-                }
-                
-                // Se for um link encurtado da Shopee (ex: https://s.shopee.com.br/abc)
-                if (formattedLink.includes('s.shopee.com.br/')) {
-                    if (!formattedLink.startsWith('http')) {
-                        formattedLink = 'https://' + formattedLink;
-                    }
-                    return formattedLink;
-                }
-                
-                // Se for apenas um código (ex: 13r, gJ, 3Bt)
-                // Converter para link completo da Shopee
-                if (formattedLink.length <= 10 && !formattedLink.includes('/') && !formattedLink.includes('.')) {
-                    // Formato: https://shope.ee/{código}
-                    return `https://shope.ee/${formattedLink}`;
-                }
-                
-                // Se não identificar o formato, retornar como link inativo
-                return '#';
-            }
-            
-            // Carregar dados de exemplo (caso a planilha não funcione)
-            function loadSampleData() {
-                allProducts = [
-                    {
-                        title: "Conjunto Academia Top Fitness e Legging Cintura Alta Zero",
-                        image: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lq9m81bf1mxj6e",
-                        price: "R$ 89,90",
-                        originalPrice: "R$ 149,90",
-                        discount: "40% OFF",
-                        category: "Roupa Feminina",
-                        link: "https://shope.ee/13r",
-                        rawLink: "13r"
-                    },
-                    {
-                        title: "Bicicleta Ergométrica Bluetooth 2.0",
-                        image: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lq9m81bf1n0q46",
-                        price: "R$ 1.299,90",
-                        originalPrice: "R$ 1.899,90",
-                        discount: "32% OFF",
-                        category: "Esportes e Lazer",
-                        link: "https://shope.ee/gJ",
-                        rawLink: "gJ"
-                    },
-                    {
-                        title: "Conjunto Academia Treino Top e Calça Legging Feminino Fitness Luxo",
-                        image: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lq9m81bf1o1q58",
-                        price: "R$ 99,90",
-                        originalPrice: "R$ 169,90",
-                        discount: "41% OFF",
-                        category: "Roupa Feminina",
-                        link: "https://shope.ee/3Bt",
-                        rawLink: "3Bt"
-                    }
-                ];
-                
-                // Adicionar categorias
-                allProducts.forEach(product => categories.add(product.category));
-                
-                initializeProductDisplay();
-                showToast("Usando dados de exemplo. Verifique sua planilha.", "warning");
-            }
-            
-            // Inicializar a exibição dos produtos
-            function initializeProductDisplay() {
-                loadingElement.style.display = 'none';
-                
-                // Popular o filtro de categorias
-                populateCategoryFilter();
-                
-                // Inicializar produtos filtrados
-                filteredProducts = [...allProducts];
-                
-                // Atualizar contador
-                updateProductCount();
-                
-                // Renderizar produtos
-                renderProducts();
-                
-                // Configurar eventos de filtro
-                searchInput.addEventListener('input', filterProducts);
-                categoryFilter.addEventListener('change', filterProducts);
-            }
-            
-            // Popular o filtro de categorias
-            function populateCategoryFilter() {
-                categoryFilter.innerHTML = '<option value="">Todas as categorias</option>';
-                
-                // Ordenar categorias alfabeticamente
-                const sortedCategories = Array.from(categories).sort();
-                
-                sortedCategories.forEach(category => {
-                    const option = document.createElement('option');
-                    option.value = category;
-                    option.textContent = category;
-                    categoryFilter.appendChild(option);
+                    // Garantir que o produto tenha todos os campos necessários
+                    product.id = Math.random().toString(36).substr(2, 9);
+                    product.image = product['Imagem'] || `https://picsum.photos/300/200?random=${Math.floor(Math.random() * 1000)}`;
+                    
+                    return product;
                 });
+                
+                // Se não houver produtos válidos, usar dados de exemplo
+                if (products.length === 0) {
+                    console.warn('Nenhum produto válido encontrado na planilha. Usando dados de exemplo.');
+                    loadSampleProducts();
+                } else {
+                    console.log(`${products.length} produtos carregados da planilha.`);
+                    updateStats();
+                    filterProducts();
+                }
+                
+            } catch (error) {
+                console.error('Erro ao carregar produtos:', error);
+                // Em caso de erro, carregar dados de exemplo
+                loadSampleProducts();
             }
+        }
+        
+        // Função para carregar produtos de exemplo (caso a planilha não esteja disponível)
+        function loadSampleProducts() {
+            products = [
+                {
+                    id: '1',
+                    'Nome': 'Smartphone Samsung Galaxy S23',
+                    'Categoria': 'Eletrônicos',
+                    'Loja': 'Amazon',
+                    'Preço Original': 3499.99,
+                    'Preço com Desconto': 2799.99,
+                    'Desconto': 20,
+                    'Link': 'https://www.amazon.com.br/dp/B0BV1CX6ZJ',
+                    'image': 'https://m.media-amazon.com/images/I/61d5y6zqjEL._AC_SX679_.jpg',
+                    'Descrição': 'Smartphone Samsung Galaxy S23 5G 256GB'
+                },
+                {
+                    id: '2',
+                    'Nome': 'Fone de Ouvido Bluetooth JBL',
+                    'Categoria': 'Eletrônicos',
+                    'Loja': 'Shopee',
+                    'Preço Original': 299.90,
+                    'Preço com Desconto': 199.90,
+                    'Desconto': 33,
+                    'Link': 'https://shopee.com.br/Fone-de-Ouvido-Bluetooth-JBL-T110BT-i.123456.7890123',
+                    'image': 'https://m.media-amazon.com/images/I/61ogPth1QbL._AC_SX679_.jpg',
+                    'Descrição': 'Fone de ouvido Bluetooth JBL com microfone'
+                },
+                {
+                    id: '3',
+                    'Nome': 'Tênis Nike Air Max',
+                    'Categoria': 'Moda',
+                    'Loja': 'Mercado Livre',
+                    'Preço Original': 499.90,
+                    'Preço com Desconto': 349.90,
+                    'Desconto': 30,
+                    'Link': 'https://produto.mercadolivre.com.br/MLB-1234567890',
+                    'image': 'https://m.media-amazon.com/images/I/71tR1nR1N7L._AC_SX679_.jpg',
+                    'Descrição': 'Tênis Nike Air Max para corrida e caminhada'
+                },
+                {
+                    id: '4',
+                    'Nome': 'Smart TV LED 50" 4K',
+                    'Categoria': 'Eletrônicos',
+                    'Loja': 'Amazon',
+                    'Preço Original': 2499.90,
+                    'Preço com Desconto': 1999.90,
+                    'Desconto': 20,
+                    'Link': 'https://www.amazon.com.br/dp/B08NFTVQW2',
+                    'image': 'https://m.media-amazon.com/images/I/71tR1nR1N7L._AC_SX679_.jpg',
+                    'Descrição': 'Smart TV LED 50" 4K UHD com HDR'
+                },
+                {
+                    id: '5',
+                    'Nome': 'Relógio Smartwatch Xiaomi',
+                    'Categoria': 'Eletrônicos',
+                    'Loja': 'AliExpress',
+                    'Preço Original': 399.90,
+                    'Preço com Desconto': 249.90,
+                    'Desconto': 38,
+                    'Link': 'https://pt.aliexpress.com/item/4001234567890.html',
+                    'image': 'https://m.media-amazon.com/images/I/61HkfY+-FjL._AC_SX679_.jpg',
+                    'Descrição': 'Relógio inteligente Xiaomi com monitor de saúde'
+                },
+                {
+                    id: '6',
+                    'Nome': 'Mochila para Notebook',
+                    'Categoria': 'Moda',
+                    'Loja': 'Shopee',
+                    'Preço Original': 149.90,
+                    'Preço com Desconto': 89.90,
+                    'Desconto': 40,
+                    'Link': 'https://shopee.com.br/Mochila-para-Notebook-15-6-i.234567.8901234',
+                    'image': 'https://m.media-amazon.com/images/I/71tR1nR1N7L._AC_SX679_.jpg',
+                    'Descrição': 'Mochila resistente à água para notebook até 15.6"'
+                },
+                {
+                    id: '7',
+                    'Nome': 'Air Fryer Philco 4L',
+                    'Categoria': 'Casa e Jardim',
+                    'Loja': 'Mercado Livre',
+                    'Preço Original': 399.90,
+                    'Preço com Desconto': 299.90,
+                    'Desconto': 25,
+                    'Link': 'https://produto.mercadolivre.com.br/MLB-2345678901',
+                    'image': 'https://m.media-amazon.com/images/I/71tR1nR1N7L._AC_SX679_.jpg',
+                    'Descrição': 'Fritadeira elétrica sem óleo com capacidade de 4L'
+                },
+                {
+                    id: '8',
+                    'Nome': 'Câmera GoPro Hero 11',
+                    'Categoria': 'Eletrônicos',
+                    'Loja': 'Amazon',
+                    'Preço Original': 2499.90,
+                    'Preço com Desconto': 1999.90,
+                    'Desconto': 20,
+                    'Link': 'https://www.amazon.com.br/dp/B0B8XKZQ1Z',
+                    'image': 'https://m.media-amazon.com/images/I/71tR1nR1N7L._AC_SX679_.jpg',
+                    'Descrição': 'Câmera de ação GoPro Hero 11 à prova d\'água'
+                }
+            ];
+            
+            updateStats();
+            filterProducts();
+        }
+        
+        // Função para atualizar estatísticas
+        function updateStats() {
+            // Atualizar contagem total de produtos
+            totalProductsEl.textContent = products.length;
+            totalProductsCountEl.textContent = products.length;
+            
+            // Calcular desconto médio
+            const totalDiscount = products.reduce((sum, product) => sum + (product['Desconto'] || 0), 0);
+            const avgDiscount = products.length > 0 ? Math.round(totalDiscount / products.length) : 0;
+            avgDiscountEl.textContent = `${avgDiscount}%`;
+            
+            // Contar lojas únicas
+            const stores = [...new Set(products.map(product => product['Loja']))];
+            storesCountEl.textContent = stores.length;
+        }
+        
+        // Função para filtrar produtos
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const category = categorySelect.value;
+            const store = storeSelect.value;
             
             // Filtrar produtos
-            function filterProducts() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const selectedCategory = categoryFilter.value;
+            filteredProducts = products.filter(product => {
+                // Filtrar por termo de busca
+                const matchesSearch = !searchTerm || 
+                    product['Nome'].toLowerCase().includes(searchTerm) ||
+                    (product['Descrição'] && product['Descrição'].toLowerCase().includes(searchTerm));
                 
-                filteredProducts = allProducts.filter(product => {
-                    const matchesSearch = product.title.toLowerCase().includes(searchTerm);
-                    const matchesCategory = !selectedCategory || product.category === selectedCategory;
-                    
-                    return matchesSearch && matchesCategory;
-                });
+                // Filtrar por categoria
+                const matchesCategory = category === 'all' || 
+                    (product['Categoria'] && product['Categoria'].toLowerCase() === category);
                 
-                currentPage = 1;
-                updateProductCount();
-                renderProducts();
-            }
+                // Filtrar por loja
+                const matchesStore = store === 'all' || 
+                    (product['Loja'] && product['Loja'].toLowerCase().replace(' ', '_') === store);
+                
+                return matchesSearch && matchesCategory && matchesStore;
+            });
             
-            // Atualizar contador de produtos
-            function updateProductCount() {
-                productCount.textContent = `${filteredProducts.length} produto(s) encontrado(s)`;
-            }
+            // Ordenar produtos
+            sortProducts();
             
-            // Renderizar produtos COM BOTÕES CLICÁVEIS
-            function renderProducts() {
-                productsContainer.innerHTML = '';
-                
-                if (filteredProducts.length === 0) {
-                    productsContainer.innerHTML = `
-                        <div class="empty-state">
-                            <h3>Nenhum produto encontrado</h3>
-                            <p>Tente ajustar sua busca ou filtro de categoria.</p>
-                        </div>
-                    `;
-                    paginationElement.innerHTML = '';
-                    return;
-                }
-                
-                // Calcular produtos para a página atual
-                const startIndex = (currentPage - 1) * productsPerPage;
-                const endIndex = startIndex + productsPerPage;
-                const productsToShow = filteredProducts.slice(startIndex, endIndex);
-                
-                // Renderizar cada produto
-                productsToShow.forEach((product, index) => {
-                    const productCard = document.createElement('div');
-                    productCard.className = 'product-card';
-                    
-                    // Gerar preço original se houver
-                    const originalPrice = product.originalPrice ? 
-                        `<div style="color: #999; font-size: 1rem; text-decoration: line-through; margin-bottom: 5px;">${product.originalPrice}</div>` : '';
-                    
-                    // Gerar desconto se houver
-                    const discountBadge = product.discount ? 
-                        `<div style="background: #ffeb3b; color: #333; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; display: inline-block; margin-left: 10px;">${product.discount}</div>` : '';
-                    
-                    // Criar um botão com evento de clique
-                    const buttonHtml = product.link && product.link !== '#' ? 
-                        `<button class="affiliate-link" data-link="${product.link}" data-index="${index}">Ver Oferta na Shopee</button>` :
-                        `<button class="affiliate-link" disabled>Link Indisponível</button>`;
-                    
-                    productCard.innerHTML = `
-                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='https://via.placeholder.com/300x300?text=Imagem+Não+Carregada'">
-                        <div class="product-info">
-                            <div class="product-category">${product.category}</div>
-                            <h3 class="product-title">${product.title}</h3>
-                            ${originalPrice}
-                            <div class="product-price">${product.price} ${discountBadge}</div>
-                            ${buttonHtml}
-                        </div>
-                    `;
-                    
-                    productsContainer.appendChild(productCard);
-                });
-                
-                // Adicionar event listeners para os botões após renderizar
-                addButtonListeners();
-                
-                // Renderizar paginação
-                renderPagination();
-            }
+            // Atualizar contador
+            visibleProductsEl.textContent = filteredProducts.length;
+        }
+        
+        // Função para ordenar produtos
+        function sortProducts() {
+            const sortBy = sortSelect.value;
             
-            // Adicionar event listeners aos botões "Ver Oferta"
-            function addButtonListeners() {
-                const buttons = document.querySelectorAll('.affiliate-link:not(:disabled)');
-                
-                buttons.forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const link = this.getAttribute('data-link');
-                        const index = this.getAttribute('data-index');
-                        
-                        if (link && link !== '#') {
-                            // Abrir link em nova aba
-                            window.open(link, '_blank', 'noopener,noreferrer');
-                            
-                            // Mostrar confirmação
-                            const productTitle = filteredProducts[index]?.title || 'Produto';
-                            showToast(`Redirecionando para: ${productTitle}`, 'success');
-                        } else {
-                            showToast('Link não disponível para este produto', 'error');
-                        }
-                    });
-                    
-                    // Adicionar estilo de hover via JavaScript também
-                    button.addEventListener('mouseenter', function() {
-                        if (this.getAttribute('data-link') && this.getAttribute('data-link') !== '#') {
-                            this.style.cursor = 'pointer';
-                            this.style.transform = 'scale(1.02)';
-                            this.style.transition = 'transform 0.2s';
-                        }
-                    });
-                    
-                    button.addEventListener('mouseleave', function() {
-                        this.style.transform = 'scale(1)';
-                    });
-                });
-            }
-            
-            // Renderizar controles de paginação
-            function renderPagination() {
-                const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-                
-                if (totalPages <= 1) {
-                    paginationElement.innerHTML = '';
-                    return;
-                }
-                
-                let paginationHTML = '';
-                
-                // Botão anterior
-                if (currentPage > 1) {
-                    paginationHTML += `<button onclick="changePage(${currentPage - 1})">Anterior</button>`;
-                }
-                
-                // Páginas
-                for (let i = 1; i <= totalPages; i++) {
-                    if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
-                        paginationHTML += `<button onclick="changePage(${i})" ${i === currentPage ? 'class="active"' : ''}>${i}</button>`;
-                    } else if (i === currentPage - 2 || i === currentPage + 2) {
-                        paginationHTML += `<span>...</span>`;
-                    }
-                }
-                
-                // Botão próximo
-                if (currentPage < totalPages) {
-                    paginationHTML += `<button onclick="changePage(${currentPage + 1})">Próxima</button>`;
-                }
-                
-                paginationElement.innerHTML = paginationHTML;
-            }
-            
-            // Mudar de página
-            window.changePage = function(page) {
-                currentPage = page;
-                renderProducts();
-                
-                // Rolagem suave para o topo dos produtos
-                productsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            };
-            
-            // Mostrar notificação toast
-            function showToast(message, type = 'info') {
-                // Adicionar ícone Font Awesome se necessário
-                if (!document.querySelector('link[href*="font-awesome"]')) {
-                    const faLink = document.createElement('link');
-                    faLink.rel = 'stylesheet';
-                    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-                    document.head.appendChild(faLink);
-                }
-                
-                toastMessage.textContent = message;
-                toast.className = `toast toast-${type}`;
-                toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i> <span id="toastMessage">${message}</span>`;
-                toast.classList.add('show');
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
-            }
-            
-            // Carregar produtos ao iniciar
-            loadProducts();
-            
-            // Recarregar produtos a cada 5 minutos
-            setInterval(loadProducts, 5 * 60 * 1000);
-            
-            // Adicionar botão de atualização manual (opcional)
-            const refreshBtn = document.createElement('button');
-            refreshBtn.innerHTML = '🔄 Atualizar Agora';
-            refreshBtn.style.cssText = `
-                background: #4CAF50;
-                color: white;
-                padding: 8px 16px;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                font-size: 0.9rem;
-                margin-left: 10px;
-            `;
-            refreshBtn.onclick = function() {
-                loadProducts();
-                showToast('Atualizando produtos...', 'info');
-            };
-            
-            // Adicionar o botão ao lado do contador
-            productCount.parentNode.appendChild(refreshBtn);
-            
-            // Também adicionar um listener global para todos os botões "Ver Oferta" via event delegation
-            document.addEventListener('click', function(e) {
-                if (e.target && e.target.classList.contains('affiliate-link')) {
-                    // Prevenir comportamento padrão se for um botão
-                    e.preventDefault();
-                    
-                    const link = e.target.getAttribute('data-link');
-                    if (link && link !== '#') {
-                        window.open(link, '_blank', 'noopener,noreferrer');
-                    }
+            filteredProducts.sort((a, b) => {
+                switch (sortBy) {
+                    case 'price_low':
+                        return a['Preço com Desconto'] - b['Preço com Desconto'];
+                    case 'price_high':
+                        return b['Preço com Desconto'] - a['Preço com Desconto'];
+                    case 'discount':
+                        return (b['Desconto'] || 0) - (a['Desconto'] || 0);
+                    case 'newest':
+                        // Ordenar por ID (simulando "mais recentes")
+                        return b.id.localeCompare(a.id);
+                    default: // relevance
+                        // Ordenar por desconto (maior para menor) como padrão
+                        return (b['Desconto'] || 0) - (a['Desconto'] || 0);
                 }
             });
-        });
+            
+            // Renderizar produtos
+            renderProducts();
+        }
+        
+        // Função para renderizar produtos
+        function renderProducts() {
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                        <div style="font-size: 60px; color: var(--border-color); margin-bottom: 20px;">😕</div>
+                        <h3 style="color: var(--text-secondary); margin-bottom: 10px;">Nenhum produto encontrado</h3>
+                        <p style="color: var(--text-light);">Tente ajustar seus filtros ou termos de busca.</p>
+                        <button id="clearFilters2" class="btn-primary" style="margin-top: 20px; display: inline-flex;">
+                            <i class="fas fa-times"></i> Limpar filtros
+                        </button>
+                    </div>
+                `;
+                
+                // Adicionar evento ao botão de limpar filtros
+                document.getElementById('clearFilters2').addEventListener('click', clearFilters);
+                return;
+            }
+            
+            // Gerar HTML dos produtos
+            let productsHTML = '';
+            
+            filteredProducts.forEach(product => {
+                const discount = product['Desconto'] || 0;
+                const originalPrice = product['Preço Original'] || product['Preço com Desconto'];
+                const currentPrice = product['Preço com Desconto'];
+                const store = product['Loja'] || 'Loja Online';
+                
+                productsHTML += `
+                    <div class="product-card">
+                        ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ''}
+                        
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product['Nome']}">
+                        </div>
+                        
+                        <div class="product-info">
+                            <h3 class="product-title">${product['Nome']}</h3>
+                            
+                            <div class="product-store">
+                                <i class="fas fa-store"></i>
+                                <span>${store}</span>
+                            </div>
+                            
+                            <div class="product-pricing">
+                                <span class="product-price">R$ ${currentPrice.toFixed(2).replace('.', ',')}</span>
+                                
+                                ${originalPrice > currentPrice ? `
+                                    <span class="product-original-price">R$ ${originalPrice.toFixed(2).replace('.', ',')}</span>
+                                ` : ''}
+                                
+                                ${discount > 0 ? `
+                                    <span class="product-discount">-${discount}%</span>
+                                ` : ''}
+                            </div>
+                            
+                            <div class="product-actions">
+                                <a href="${product['Link'] || '#'}" target="_blank" class="btn-primary">
+                                    <i class="fas fa-shopping-cart"></i> Ver oferta
+                                </a>
+                                
+                                <button class="btn-secondary" onclick="addToFavorites('${product.id}')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            productsGrid.innerHTML = productsHTML;
+        }
+        
+        // Função para limpar filtros
+        function clearFilters() {
+            searchInput.value = '';
+            sortSelect.value = 'relevance';
+            categorySelect.value = 'all';
+            storeSelect.value = 'all';
+            
+            filterProducts();
+        }
+        
+        // Função para adicionar aos favoritos (simulação)
+        function addToFavorites(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                alert(`"${product['Nome']}" foi adicionado aos favoritos!`);
+                
+                // Em uma implementação real, isso seria salvo no localStorage ou em um backend
+                const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                if (!favorites.includes(productId)) {
+                    favorites.push(productId);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                }
+            }
+        }
+        
+        // Função para rolar para o topo
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Função para mostrar/ocultar botão flutuante
+        function toggleFloatingButton() {
+            if (window.scrollY > 300) {
+                floatingButton.style.display = 'flex';
+            } else {
+                floatingButton.style.display = 'none';
+            }
+        }
+        
+        // Inicialmente ocultar o botão flutuante
+        floatingButton.style.display = 'none';
     </script>
 </body>
 </html>
