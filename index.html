@@ -26,13 +26,13 @@
         }
         
         body {
-            background-color: var(--branco);
+            background-color: #f8f8f8;
             color: var(--cinza-escuro);
             line-height: 1.5;
             overflow-x: hidden;
         }
         
-        /* HEADER FIXO COMO NA IMAGEM */
+        /* HEADER FIXO */
         .app-header {
             position: fixed;
             top: 0;
@@ -153,30 +153,32 @@
             color: var(--branco);
         }
         
-        /* CARDS DE PRODUTO - ESTILO APP */
+        /* CARDS DE PRODUTO - 2 COLUNAS NO CELULAR */
         .product-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
         
         .product-card {
             background: var(--branco);
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
         }
         
         .product-image-container {
             position: relative;
-            height: 220px;
+            height: 160px;
             width: 100%;
             overflow: hidden;
             background-color: #f9f9f9;
@@ -189,54 +191,54 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            padding: 20px;
+            padding: 15px;
             transition: transform 0.5s ease;
-        }
-        
-        .product-card:hover .product-image {
-            transform: scale(1.05);
         }
         
         .product-badge {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            top: 8px;
+            left: 8px;
             background-color: var(--verde);
             color: var(--branco);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 3px 8px;
+            border-radius: 10px;
             letter-spacing: 0.5px;
         }
         
         .product-info {
-            padding: 18px;
+            padding: 12px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-title {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
             color: var(--cinza-escuro);
-            line-height: 1.4;
+            line-height: 1.3;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            height: 3.9em;
         }
         
         .product-meta {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-            font-size: 0.85rem;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 12px;
+            font-size: 0.75rem;
         }
         
         .product-rating {
             color: #FFB100;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         
         .product-sales {
@@ -248,40 +250,25 @@
         .mystery-button {
             display: block;
             width: 100%;
-            padding: 16px;
+            padding: 12px;
             background: linear-gradient(135deg, var(--laranja-principal) 0%, var(--laranja-escuro) 100%);
             color: var(--branco);
             border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 800;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
             text-align: center;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .mystery-button::after {
-            content: "→";
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.3rem;
-            transition: transform 0.3s ease;
+            box-shadow: 0 3px 8px rgba(255, 107, 0, 0.3);
+            margin-top: auto;
         }
         
         .mystery-button:hover {
             background: linear-gradient(135deg, var(--laranja-escuro) 0%, #D14900 100%);
             transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(255, 107, 0, 0.4);
-        }
-        
-        .mystery-button:hover::after {
-            transform: translateY(-50%) translateX(5px);
+            box-shadow: 0 6px 12px rgba(255, 107, 0, 0.4);
         }
         
         /* LOADING */
@@ -291,6 +278,7 @@
             align-items: center;
             justify-content: center;
             padding: 60px 20px;
+            grid-column: 1 / -1;
         }
         
         .loading-spinner {
@@ -312,6 +300,7 @@
         .empty-state {
             text-align: center;
             padding: 80px 20px;
+            grid-column: 1 / -1;
         }
         
         .empty-state i {
@@ -361,11 +350,42 @@
             color: var(--laranja-principal);
         }
         
-        /* AJUSTES PARA TELAS MAIORES */
+        /* TABLET */
         @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .product-image-container {
+                height: 200px;
+            }
+            
+            .product-title {
+                font-size: 1rem;
+                height: 4.5em;
+            }
+            
             .main-content {
-                max-width: 600px;
+                max-width: 768px;
                 margin: 140px auto 0;
+            }
+        }
+        
+        /* DESKTOP */
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 25px;
+            }
+            
+            .product-image-container {
+                height: 220px;
+            }
+            
+            .mystery-button {
+                padding: 14px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -393,7 +413,7 @@
             <!-- Categorias serão carregadas dinamicamente -->
         </div>
 
-        <!-- PRODUTOS -->
+        <!-- PRODUTOS EM 2 COLUNAS -->
         <div id="productsContainer" class="product-grid">
             <!-- Produtos serão carregados aqui -->
         </div>
@@ -438,20 +458,20 @@
         
         // Textos misteriosos para os botões
         const TEXTOS_MISTERIOSOS = [
-            "🚀 DESCOBRIR SEGREDO",
-            "✨ O QUE HÁ AQUI?",
-            "🤫 EU PRECISO VER",
-            "🎁 ABRIR SURPRESA",
-            "🔍 INVESTIGAR AGORA",
-            "🌟 DESVENDAR OFERTA",
-            "💥 VER ESTA JÁ!",
-            "🛒 EU QUERO ISSO!",
+            "🚀 DESCOBRIR",
+            "✨ VER SEGREDO",
+            "🤫 EU QUERO",
+            "🎁 ABRIR",
+            "🔍 INVESTIGAR",
+            "🌟 DESVENDAR",
+            "💥 VER AGORA",
+            "🛒 QUERO ISSO",
             "🔥 SABER MAIS",
-            "😮 MOSTRE-ME"
+            "😮 CLICAR"
         ];
         
-        // Dados de vendas (simulados para demonstração)
-        const VENDAS_SIMULADAS = ["2mil+ vendas", "1mil+ vendas", "500+ vendas", "100+ vendas", "50+ vendas"];
+        // Dados de vendas (simulados)
+        const VENDAS_SIMULADAS = ["2mil+", "1mil+", "500+", "100+", "50+"];
         const AVALIACOES = ["★★★★★", "★★★★☆", "★★★☆☆"];
         
         // ========== VARIÁVEIS GLOBAIS ==========
@@ -469,7 +489,6 @@
         
         // ========== FUNÇÕES PRINCIPAIS ==========
         
-        // Carrega produtos da planilha
         async function carregarProdutos() {
             try {
                 const proxyUrl = 'https://corsproxy.io/?';
@@ -486,7 +505,6 @@
             }
         }
         
-        // Processa o CSV da planilha
         function processarCSV(csvText) {
             const linhas = csvText.split('\n');
             todosProdutos = [];
@@ -497,15 +515,13 @@
                 return;
             }
             
-            // Detecta cabeçalhos automaticamente
             const cabecalhos = linhas[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
             
             const indiceNome = cabecalhos.findIndex(h => h.includes('nome') || h.includes('produto') || h.includes('title'));
-            const indiceImagem = cabecalhos.findIndex(h => h.includes('imagem') || h.includes('foto') || h.includes('image') || h.includes('url'));
+            const indiceImagem = cabecalhos.findIndex(h => h.includes('imagem') || h.includes('foto') || h.includes('image'));
             const indiceCategoria = cabecalhos.findIndex(h => h.includes('categoria') || h.includes('tipo') || h.includes('category'));
             const indiceLink = cabecalhos.findIndex(h => h.includes('link') || h.includes('url') || h.includes('shopee'));
             
-            // Processa cada linha
             for (let i = 1; i < linhas.length; i++) {
                 if (!linhas[i].trim()) continue;
                 
@@ -514,12 +530,11 @@
                 if (colunas.length >= 4) {
                     const produto = {
                         nome: colunas[indiceNome] || 'Produto Sem Nome',
-                        imagem: colunas[indiceImagem] || 'https://via.placeholder.com/300x300/FF6B00/FFFFFF?text=Oferta+Secreta',
+                        imagem: colunas[indiceImagem] || 'https://via.placeholder.com/300x300/FF6B00/FFFFFF?text=Oferta',
                         categoria: colunas[indiceCategoria] || 'Geral',
                         link: colunas[indiceLink] || '#'
                     };
                     
-                    // Garante que o link comece com http
                     if (produto.link !== '#' && !produto.link.startsWith('http')) {
                         produto.link = 'https://' + produto.link;
                     }
@@ -536,44 +551,55 @@
             }
         }
         
-        // Usa dados de exemplo se a planilha não carregar
         function usarDadosExemplo() {
             todosProdutos = [
                 {
                     nome: "Conjunto Academia Top Fitness e Legging Cintura Alta Zero",
-                    imagem: "https://images.unsplash.com/photo-1594736797933-d0f9593a283d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    imagem: "https://images.unsplash.com/photo-1594736797933-d0f9593a283d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
                     categoria: "ROUPA FEMININA",
                     link: "https://s.shopee.com.br/13r"
                 },
                 {
                     nome: "Bicicleta Ergométrica Bluetooth 2.0 Jogos AR",
-                    imagem: "https://images.unsplash.com/photo-1576678927484-cc907957088c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    imagem: "https://images.unsplash.com/photo-1576678927484-cc907957088c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
                     categoria: "Esportes e Lazer",
                     link: "https://s.shopee.com.br/gJ"
                 },
                 {
                     nome: "Conjunto Academia Treino Top e Calça Legging",
-                    imagem: "https://images.unsplash.com/photo-1591369822091-8b603d6f6c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    imagem: "https://images.unsplash.com/photo-1591369822091-8b603d6f6c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
                     categoria: "ROUPA FEMININA",
                     link: "https://s.shopee.com.br/3Bt"
                 },
                 {
                     nome: "Fone Bluetooth com Cancelamento de Ruído",
-                    imagem: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    imagem: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
                     categoria: "Eletrônicos",
                     link: "https://shope.ee/7fKQ2X6pJd"
                 },
                 {
                     nome: "Smartwatch Fitness com Monitor Cardíaco",
-                    imagem: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    imagem: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
                     categoria: "Eletrônicos",
                     link: "https://shope.ee/5KQ1W2V3U4"
                 },
                 {
                     nome: "Kit Maquiagem Profissional com Pincéis",
-                    imagem: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    imagem: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
                     categoria: "Beleza",
                     link: "https://shope.ee/6F7G8H9I0J"
+                },
+                {
+                    nome: "Piscina Infantil Retangular 1000 Litros",
+                    imagem: "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    categoria: "Lazer",
+                    link: "#"
+                },
+                {
+                    nome: "Mini Refrigerador De Ar Ventilador",
+                    imagem: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    categoria: "Eletrodomésticos",
+                    link: "#"
                 }
             ];
             
@@ -581,35 +607,23 @@
             inicializarApp();
         }
         
-        // Inicializa o app após carregar dados
         function inicializarApp() {
             loadingElement.style.display = 'none';
-            
-            // Cria as categorias
             criarCategorias();
-            
-            // Inicializa produtos filtrados
             produtosFiltrados = [...todosProdutos];
-            
-            // Renderiza os produtos
             renderizarProdutos();
-            
-            // Configura eventos
             configurarEventos();
         }
         
-        // Cria os chips de categoria
         function criarCategorias() {
             categoriesContainer.innerHTML = '';
             
-            // Botão "Todas"
             const btnTodas = document.createElement('div');
             btnTodas.className = 'category-chip active';
             btnTodas.textContent = 'Todas';
             btnTodas.onclick = () => filtrarPorCategoria('');
             categoriesContainer.appendChild(btnTodas);
             
-            // Cria chips para cada categoria
             Array.from(categoriasUnicas).sort().forEach(categoria => {
                 const chip = document.createElement('div');
                 chip.className = 'category-chip';
@@ -619,22 +633,17 @@
             });
         }
         
-        // Filtra produtos por categoria
         function filtrarPorCategoria(categoria) {
             categoriaAtiva = categoria;
             
-            // Atualiza estado dos chips
             document.querySelectorAll('.category-chip').forEach(chip => {
                 chip.classList.remove('active');
             });
             
             event.target.classList.add('active');
-            
-            // Aplica filtro
             aplicarFiltros();
         }
         
-        // Aplica todos os filtros (busca + categoria)
         function aplicarFiltros() {
             const termoBusca = searchInput.value.toLowerCase().trim();
             
@@ -652,7 +661,6 @@
             renderizarProdutos();
         }
         
-        // Renderiza os produtos na tela
         function renderizarProdutos() {
             productsContainer.innerHTML = '';
             
@@ -663,29 +671,25 @@
             
             emptyState.style.display = 'none';
             
-            // Renderiza cada produto
             produtosFiltrados.forEach((produto, index) => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 
-                // Texto aleatório para o botão
                 const textoBotao = TEXTOS_MISTERIOSOS[Math.floor(Math.random() * TEXTOS_MISTERIOSOS.length)];
-                
-                // Dados simulados para avaliações e vendas
                 const avaliacao = AVALIACOES[Math.floor(Math.random() * AVALIACOES.length)];
                 const vendas = VENDAS_SIMULADAS[Math.floor(Math.random() * VENDAS_SIMULADAS.length)];
                 
                 card.innerHTML = `
                     <div class="product-image-container">
                         <img src="${produto.imagem}" alt="${produto.nome}" class="product-image" 
-                             onerror="this.src='https://via.placeholder.com/300x300/FF6B00/FFFFFF?text=Oferta+Secreta'">
-                        <div class="product-badge">DESTAQUE</div>
+                             onerror="this.src='https://via.placeholder.com/300x300/FF6B00/FFFFFF?text=Oferta'">
+                        <div class="product-badge">OFERTA</div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${produto.nome}</h3>
                         <div class="product-meta">
                             <div class="product-rating">${avaliacao}</div>
-                            <div class="product-sales">${vendas}</div>
+                            <div class="product-sales">${vendas} vendas</div>
                         </div>
                         <a href="${produto.link}" target="_blank" class="mystery-button">${textoBotao}</a>
                     </div>
@@ -695,33 +699,20 @@
             });
         }
         
-        // Configura eventos
         function configurarEventos() {
-            // Busca com debounce
             let timeoutBusca;
             searchInput.addEventListener('input', () => {
                 clearTimeout(timeoutBusca);
                 timeoutBusca = setTimeout(aplicarFiltros, 300);
             });
             
-            // Tecla Enter na busca
             searchInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') aplicarFiltros();
             });
             
-            // Clique nos botões misteriosos (para tracking)
-            document.addEventListener('click', (e) => {
-                if (e.target.classList.contains('mystery-button')) {
-                    // Aqui você pode adicionar código de tracking
-                    console.log('Botão misterioso clicado:', e.target.href);
-                }
-            });
-            
-            // Atualizar dados periodicamente
-            setInterval(carregarProdutos, 5 * 60 * 1000); // 5 minutos
+            setInterval(carregarProdutos, 5 * 60 * 1000);
         }
         
-        // ========== INICIALIZAÇÃO ==========
         document.addEventListener('DOMContentLoaded', carregarProdutos);
     </script>
 </body>
