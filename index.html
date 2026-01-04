@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link na Bio | Ofertas Shopee</title>
+
+  <!-- SEO BÁSICO -->
+  <meta name="description" content="Ofertas selecionadas da Shopee. Produtos confiáveis, atualizados automaticamente." />
+
+  <style>
+    :root{--botao-cor:#ee4d2d}
+    body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding-bottom:100px}
+    header{background:#ee4d2d;color:#fff;padding:15px;text-align:center;font-size:18px;font-weight:bold}
+    .categorias{display:flex;gap:8px;overflow-x:auto;padding:10px;background:#fff}
+    .categoria-btn{padding:8px 14px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer;white-space:nowrap}
+    .categoria-btn.ativa{background:#ee4d2d;color:#fff;border-color:#ee4d2d}
+    .produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;padding:12px;max-width:1100px;margin:auto}
+    .produto{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,.12);position:relative}
+    .produto img{width:100%;height:160px;object-fit:contain;border-radius:8px}
+    .produto h2{font-size:14px;margin:8px 0;min-height:36px}
+    .produto a{display:block;padding:12px;background:var(--botao-cor);color:#fff;text-decoration:none;border-radius:8px;font-weight:bold}
+    .selo{position:absolute;top:8px;left:8px;background:#ff6a00;color:#fff;font-size:11px;padding:4px 8px;border-radius:6px}
+    .estrelas{color:#f5a623;font-size:13px;margin-bottom:4px}
+    .urgencia{font-size:12px;color:#d73211;margin-bottom:6px}
+    .botao-flutuante{position:fixed;bottom:15px;right:15px;background:#ee4d2d;color:#fff;padding:16px 22px;border-radius:50px;font-weight:bold;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:999}
+    .popup{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:1000}
+    .popup-box{background:#fff;padding:20px;border-radius:14px;max-width:320px;text-align:center}
+    .popup-box a{display:block;margin-top:15px;padding:12px;background:#ee4d2d;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold}
+  </style>
+</head>
+<body>
+
+<header>
+  🔥 Ofertas que Realmente Valem a Pena
+  <div style="font-size:13px;font-weight:normal">Atualizado automaticamente • Links verificados</div>
+</header>
+
+<div class="categorias" id="categorias"></div>
+<div class="produtos" id="produtos"></div>
+
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h3>🎁 Desconto Exclusivo</h3>
+    <p>Veja agora as ofertas que mais estão vendendo hoje</p>
+    <a href="https://shope.ee/SEU_LINK_GERAL" target="_blank">Ver Ofertas</a>
+  </div>
+</div>
+
+<a href="https://shope.ee/SEU_LINK_GERAL" class="botao-flutuante" target="_blank">🔥 Ofertas do Dia</a>
+
+<script>
+// GARANTE QUE O DOM ESTÁ PRONTO
+window.addEventListener('DOMContentLoaded',()=>{
+
+  // A/B TESTE DE COR
+  const cores=['#ee4d2d','#ff6a00'];
+  document.documentElement.style.setProperty('--botao-cor',cores[Math.floor(Math.random()*cores.length)]);
+
+  // POPUP
+  setTimeout(()=>{
+    const p=document.getElementById('popup');
+    if(p) p.style.display='flex'
+  },7000);
+  document.getElementById('popup').onclick=e=>{
+    if(e.target.id==='popup')e.target.style.display='none'
+  };
+
+  const planilhaURL='https://opensheet.elk.sh/https://docs.google.com/spreadsheets/d/16TTELO5LDp1YZ4cJQk95_dHIHyHw0ZJlJApDXvTGLUI/edit?usp=sharing';
+  let produtos=[];
+
+  fetch(planilhaURL)
+    .then(r=>r.json())
+    .then(dados=>{
+      produtos=Array.isArray(dados)?dados:Object.values(dados);
+      criarCategorias();
+      renderizarProdutos('Todos');
+    })
+    .catch(()=>{
+      document.getElementById('produtos').innerHTML='<p style="text-align:center">Erro ao carregar produtos</p>'
+    });
+
+  function criarCategorias(){
+    const container=document.getElementById('categorias');
+    if(!container) return;
+    const categorias=['Todos',...new Set(produtos.map(p=>p.categoria).filter(Boolean))];
+    container.innerHTML='';
+    categorias.forEach((cat,i)=>{
+      const btn=document.createElement('button');
+      btn.className='categoria-btn'+(i===0?' ativa':'');
+      btn.innerText=cat;
+      btn.onclick=()=>{
+        document.querySelectorAll('.categoria-btn').forEach(b=>b.classList.remove('ativa'));
+        btn.classList.add('ativa');
+        renderizarProdutos(cat);
+      };
+      container.appendChild(btn);
+    });
+  }
+
+  function renderizarProdutos(cat){
+    const container=document.getElementById('produtos');
+    if(!container) return;
+    container.innerHTML='';
+    produtos.filter(p=>cat==='Todos'||p.categoria===cat).forEach(prod=>{
+      const estrelas='★★★★★'.slice(0,prod.estrelas||5);
+      container.innerHTML+=`
+        <div class="produto">
+          <div class="selo">Mais Vendido</div>
+          <img src="${prod.imagem||''}" alt="${prod.nome||''}">
+          <h2>${prod.nome||'Produto Shopee'}</h2>
+          <div class="estrelas">${estrelas}</div>
+          <div class="urgencia">⏰ Últimas unidades</div>
+          <a href="${prod.link||'#'}" target="_blank">Comprar agora</a>
+        </div>`;
+    });
+  }
+});
+</script>
+
+</body>
+</html>
