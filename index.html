@@ -110,7 +110,7 @@
         /* CONTEÚDO PRINCIPAL */
         .main-content {
             margin-top: 140px;
-            padding: 0 15px 80px;
+            padding: 0 15px 30px; /* Reduzido o padding inferior */
         }
         
         /* SEÇÃO DE CATEGORIAS */
@@ -315,39 +315,30 @@
             margin-bottom: 10px;
         }
         
-        /* FOOTER */
-        .app-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--branco);
-            border-top: 1px solid #f0f0f0;
-            padding: 12px 0;
-            display: flex;
-            justify-content: space-around;
-            z-index: 999;
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+        /* RODAPÉ SIMPLES (IGUAL À SUA IMAGEM) */
+        .simple-footer {
+            background: var(--cinza-escuro);
+            color: var(--branco);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 40px;
         }
         
-        .footer-tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--cinza-medio);
-            text-decoration: none;
-            font-size: 0.8rem;
+        .footer-text {
+            margin-bottom: 10px;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .footer-highlight {
+            color: var(--laranja-claro);
             font-weight: 600;
-            transition: color 0.2s ease;
         }
         
-        .footer-tab i {
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-        }
-        
-        .footer-tab.active {
-            color: var(--laranja-principal);
+        .footer-secret {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #999;
         }
         
         /* TABLET */
@@ -369,6 +360,10 @@
             .main-content {
                 max-width: 768px;
                 margin: 140px auto 0;
+            }
+            
+            .simple-footer {
+                padding: 40px 20px;
             }
         }
         
@@ -432,25 +427,12 @@
         </div>
     </main>
 
-    <!-- FOOTER / MENU INFERIOR -->
-    <nav class="app-footer">
-        <a href="#" class="footer-tab active">
-            <i class="fas fa-home"></i>
-            <span>Oferta</span>
-        </a>
-        <a href="#" class="footer-tab">
-            <i class="fas fa-chart-line"></i>
-            <span>Conversão</span>
-        </a>
-        <a href="#" class="footer-tab">
-            <i class="fas fa-money-bill-wave"></i>
-            <span>Renda</span>
-        </a>
-        <a href="#" class="footer-tab">
-            <i class="fas fa-user"></i>
-            <span>Conta</span>
-        </a>
-    </nav>
+    <!-- RODAPÉ SIMPLES (IGUAL À SUA IMAGEM) -->
+    <footer class="simple-footer">
+        <p class="footer-text"><span class="footer-highlight">SUPER OFERTAS</span> - As melhores ofertas da Shopee em um só lugar!</p>
+        <p class="footer-text">Atualizado automaticamente. Todos os produtos são de parceiros afiliados.</p>
+        <p class="footer-secret">✨ O segredo sempre está por trás de um clique!</p>
+    </footer>
 
     <script>
         // ========== CONFIGURAÇÃO ==========
@@ -717,6 +699,7 @@
     </script>
 </body>
 </html>
+
 
 
 
